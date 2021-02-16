@@ -1,0 +1,28 @@
+header {
+
+  width: 80%;
+
+    & .contentNav {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+
+        & p {
+            background: $bg-secondary;
+            border-radius: 5px;
+            padding:0.2em 0.5em;
+            position : fixed;
+            top : 0.8em;
+        }
+    }
+
+
+
+    nav ul {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+   
+}}

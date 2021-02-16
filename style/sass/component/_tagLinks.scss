@@ -1,0 +1,17 @@
+.tagLinks {
+    height: 22px;
+    border: 0.5px solid $font-third;
+    border-radius: 11px;
+    background: $bg-third;
+    color : $font-secondary;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding:0.2em 0.5em;
+
+    &:hover {
+        background: $bg-primary;
+        color : $font-third
+    }
+}
+

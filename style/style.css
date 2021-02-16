@@ -1,0 +1,65 @@
+@font-face {
+  font-family: "DMSans";
+  src: url("./fonts/DMSans/DMSans-Regular.ttf") format("truetype");
+}
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "DMSans", sans-serif;
+}
+
+ul, li {
+  list-style-type: none;
+}
+
+button {
+  height: 170px;
+  width: 69px;
+  border-radius: 5px;
+  background: #901C1C;
+}
+button:hover {
+  background: #D3573C;
+  color: #FAFAFA;
+}
+
+.tagLinks {
+  height: 22px;
+  border: 0.5px solid #525252;
+  border-radius: 11px;
+  background: #FAFAFA;
+  color: #901C1C;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.2em 0.5em;
+}
+.tagLinks:hover {
+  background: #901C1C;
+  color: #525252;
+}
+
+header {
+  width: 80%;
+}
+header .contentNav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+header .contentNav p {
+  background: #D3573C;
+  border-radius: 5px;
+  padding: 0.2em 0.5em;
+  position: fixed;
+  top: 0.8em;
+}
+header nav ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/*# sourceMappingURL=style.css.map */
