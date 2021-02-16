@@ -34,10 +34,20 @@ button:hover {
   justify-content: center;
   align-items: center;
   padding: 0.2em 0.5em;
+  cursor: pointer;
 }
-.tagLinks:hover {
+.tagLinks:hover, .tagLinks:focus {
   background: #901C1C;
-  color: #525252;
+  color: #FAFAFA;
+}
+
+.tagUl {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.tagUl li {
+  margin: 0.1em;
 }
 
 header {
@@ -55,11 +65,19 @@ header .contentNav p {
   padding: 0.2em 0.5em;
   position: fixed;
   top: 0.8em;
+  cursor: pointer;
 }
-header nav ul {
+
+main {
+  width: 100%;
+}
+
+.homeView {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
+  width: 25vw;
 }
 
 /*# sourceMappingURL=style.css.map */

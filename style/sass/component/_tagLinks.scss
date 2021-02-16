@@ -8,10 +8,21 @@
     justify-content: center;
     align-items: center;
     padding:0.2em 0.5em;
+    cursor: pointer;
 
-    &:hover {
+    &:hover, &:focus {
         background: $bg-primary;
-        color : $font-third
+        color : $bg-third
     }
 }
 
+
+.tagUl {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    li {
+        margin : 0.1em
+    }
+}
