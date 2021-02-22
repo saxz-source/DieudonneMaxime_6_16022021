@@ -1,25 +1,32 @@
 header {
 
-  width: 80%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-    & .contentNav {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-
-        & p {
-            background: $bg-secondary;
-            border-radius: 5px;
-            padding:0.2em 0.5em;
-            position : fixed;
-            top : 0.8em;
-            cursor: pointer;
-        }
+    img {
+        padding:2em
     }
 
+    & .contentNav {
 
+            .tagUl {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-wrap: wrap;
+            }
+    }
 
-    
-   
+    & p {
+        background: $bg-secondary;
+        border-radius: 5px;
+        padding:0.2em 0.5em;
+        position : fixed;
+        top : 0.5em;
+        right : 40%;
+        cursor: pointer;
+    }
+
 }

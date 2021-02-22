@@ -1,4 +1,4 @@
-export function makeRequest(method, url) {
+export function makeRequest(method, url, data) {
     return new Promise(function (resolve, reject) {
         var request = new XMLHttpRequest();
         request.open(method, url);

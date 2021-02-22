@@ -13,13 +13,17 @@ ul, li {
   list-style-type: none;
 }
 
-button {
-  height: 170px;
-  width: 69px;
+a {
+  text-decoration: none;
+}
+
+button, .button {
+  width: 170px;
+  height: 69px;
   border-radius: 5px;
   background: #901C1C;
 }
-button:hover {
+button:hover, .button:hover {
   background: #D3573C;
   color: #FAFAFA;
 }
@@ -50,34 +54,132 @@ button:hover {
   margin: 0.1em;
 }
 
-header {
-  width: 80%;
+#likesAndPrice {
+  position: fixed;
+  bottom: 0;
+  right: 1em;
+  background: #D3573C;
+  padding: 0.5em;
 }
-header .contentNav {
+
+header {
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
 }
-header .contentNav p {
+header img {
+  padding: 2em;
+}
+header .contentNav .tagUl {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+header p {
   background: #D3573C;
   border-radius: 5px;
   padding: 0.2em 0.5em;
   position: fixed;
-  top: 0.8em;
+  top: 0.5em;
+  right: 40%;
   cursor: pointer;
 }
 
 main {
   width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 5%;
 }
 
 .homeView {
+  width: 27vw;
+  margin: 2rem 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.homeView h2 {
+  font-size: 2.25rem;
+  color: #D3573C;
+  font-weight: 400;
+}
+.homeView .divPortrait {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.homeView .divPortrait .homePhotoImg {
+  width: 25vh;
+  height: 25vh;
+  border-radius: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.homeView .divPortrait p {
+  color: #901C1C;
+  font-size: 0.82rem;
+}
+.homeView .staticTextDiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-weight: 400;
+}
+.homeView .staticTextDiv p {
+  font-size: 0.62rem;
+}
+.homeView .staticTextDiv .price {
+  color: #525252;
+}
+.homeView .tagUl {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#photographerBanner {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap;
-  width: 25vw;
+  background: #FAFAFA;
+  padding: 2.5em;
+  width: 100%;
+}
+#photographerBanner .leftBanner {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+#photographerBanner .leftBanner .photographerResume {
+  padding-right: 2em;
+}
+#photographerBanner .leftBanner ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#photographerBanner #photographerImg {
+  width: 25vh;
+  height: 25vh;
+  border-radius: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#portfolio .sortBy {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /*# sourceMappingURL=style.css.map */

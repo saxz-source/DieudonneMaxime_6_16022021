@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="style/style.css" rel="stylesheet">
+    <title>Document</title>
+</head>
+
+<body>
+    <header>
+        <a href="index.html"><img src="./style/images/logo.svg" alt="FishEye Home Page"></a>
+
+    </header>
+
+    <main>
+        <header id="photographerBanner">
+            <div class="leftBanner">
+                <div class="photographerResume">
+                    <h1 id="phName"> </h1>
+                    <p id="phFrom"> </p>
+                    <p id="phSentence"> </p>
+                    <ul id="phUlTags">
+                    </ul>
+                </div>
+                <button class="contactMe">Contactez-moi</button>
+            </div>
+
+            <div id="photographerImg"></div>
+        </header>
+        <section id="portfolio">
+            <div class="sortBy">
+                <p> Trier par : </p>
+                <select class="sortMenu button">
+                    <option>Popularité</option>
+                    <option>Date</option>
+                    <option>Titre</option>
+
+                
+                
+                </select>
+            </div>
+            <article class="OnePicture">
+                <div id="thePhoto"></div>
+                <div id="photoName"></div>
+                <div id="photoPrice"></div>
+                <div id="photoLikes"></div>
+            </article>
+        </section>
+        <div id="likesAndPrice"></div>
+    </main>
+    <script type="module" src="./src/photographer-page.js"></script>
+</body>
+
+</html>
