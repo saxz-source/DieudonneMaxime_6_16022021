@@ -1,0 +1,66 @@
+#formModal {
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  display: none;
+  .formDiv {
+      display: flex;
+      justify-content: center;
+      align-items:center;
+      flex-direction: column;
+      min-width: 50vh;
+      background: $bg-secondary;
+      padding: 1em 2em 2em;
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        font-size: 1.8em;
+        h1 {
+           padding: 0 1em 1em 0;
+        }
+        span {
+            color: white;
+            cursor : pointer;
+            font-size: 2em;
+          }
+      }
+      form {
+        width: 100%;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+     
+        .artistFormGroup {
+          display: flex;
+          justify-content: center;
+          align-items: flex-start;
+          flex-direction: column;
+          width: 100%;
+          font-size: 1.25em;
+          font-weight: 400;
+          input,
+          textarea {
+            width: 100%;
+            margin-bottom: 1.5em;
+            height: 3.5em;
+            padding: 0.5em;
+          }
+          textarea {
+            min-height: 9em;
+          }
+        }
+        button {
+          align-self: flex-start;
+          height: 3.8em;
+        }
+      }
+  }
+  
+
+}

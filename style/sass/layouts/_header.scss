@@ -1,32 +1,33 @@
 header {
-
   width: 100%;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-end;
+  position: relative;
+  min-height: 8vh;
 
-    img {
-        padding:2em
+  img {
+    position: absolute;
+    left: 5em;
+    top: 2em;
+  }
+
+  & .contentNav {
+    .tagUl {
+      display: flex;
+      justify-content: center;
+      align-items: baseline;
+      flex-wrap: wrap;
     }
+  }
 
-    & .contentNav {
-
-            .tagUl {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                flex-wrap: wrap;
-            }
-    }
-
-    & p {
-        background: $bg-secondary;
-        border-radius: 5px;
-        padding:0.2em 0.5em;
-        position : fixed;
-        top : 0.5em;
-        right : 40%;
-        cursor: pointer;
-    }
-
+  .goContent {
+    background: $bg-secondary;
+    border-radius: 5px;
+    padding: 0.2em 0.5em;
+    position: fixed;
+    top: 0.5em;
+    right: 40%;
+    cursor: pointer;
+  }
 }

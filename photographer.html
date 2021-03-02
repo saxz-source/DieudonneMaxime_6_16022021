@@ -1,57 +1,94 @@
 <!DOCTYPE html>
 <html lang="fr">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="style/style.css" rel="stylesheet">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="style/style.css" rel="stylesheet" />
     <title>Document</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <header>
-        <a href="index.html"><img src="./style/images/logo.svg" alt="FishEye Home Page"></a>
-
+      <a href="index.html"
+        ><img src="./style/images/logo.svg" alt="FishEye Home Page"
+      /></a>
     </header>
 
     <main>
-        <header id="photographerBanner">
-            <div class="leftBanner">
-                <div class="photographerResume">
-                    <h1 id="phName"> </h1>
-                    <p id="phFrom"> </p>
-                    <p id="phSentence"> </p>
-                    <ul id="phUlTags">
-                    </ul>
-                </div>
-                <button class="contactMe">Contactez-moi</button>
-            </div>
+      <header id="photographerBanner">
+        <div class="leftBanner">
+          <div class="photographerResume">
+            <h1 id="phName"></h1>
+            <p id="phFrom"></p>
+            <p id="phSentence"></p>
+            <ul id="phUlTags"></ul>
+          </div>
+          <button id="contactMe">Contactez-moi</button>
+        </div>
+        <div id="photographerImg"></div>
+      </header>
+      <section id="portfolio">
+        <div class="sortBy">
+          <p>Trier par :</p>
+          <select class="sortMenu button" id="sortMenu">
+            <option value="popularity" name="popularity">Popularité</option>
+            <option value="date" name="date">Date</option>
+            <option value="title" name="title">Titre</option>
+          </select>
+        </div>
+        <section id="photoFeed"></section>
+      </section>
 
-            <div id="photographerImg"></div>
-        </header>
-        <section id="portfolio">
-            <div class="sortBy">
-                <p> Trier par : </p>
-                <select class="sortMenu button">
-                    <option>Popularité</option>
-                    <option>Date</option>
-                    <option>Titre</option>
+      <!-------LightBox-->
 
-                
-                
-                </select>
+      <section id="lightBox">
+        <div class="lightSpace">
+          <span id="closeLightBox">X</span>
+          <span id="leftSpan"> L </span>
+          <div id="lightImg"></div>
+          <span id="rightSpan"> R </span>
+          <div id="lightName"></div>
+        </div>
+      </section>
+
+      <!-------Module en bas à droite-->
+      <div id="likesAndPrice">
+        <div id="totalLikes"></div>
+        <div id="priceByDay"></div>
+      </div>
+
+      <!--------Modale de formulaire -->
+
+      <section id="formModal">
+        <div class="formDiv">
+          <header>
+            <h1 id="artistFormTitle"></h1>
+            <span id="closeModal">X</span>
+          </header>
+
+          <form id="artistForm">
+            <div class="artistFormGroup">
+              <label for="firstName"> Prénom</label>
+              <input type="text" id="firstName" />
             </div>
-            <article class="OnePicture">
-                <div id="thePhoto"></div>
-                <div id="photoName"></div>
-                <div id="photoPrice"></div>
-                <div id="photoLikes"></div>
-            </article>
-        </section>
-        <div id="likesAndPrice"></div>
+            <div class="artistFormGroup">
+              <label for="secondName"> Nom</label>
+              <input type="text" id="secondName" />
+            </div>
+            <div class="artistFormGroup">
+              <label for="email"> Email</label>
+              <input type="email" id="email" />
+            </div>
+            <div class="artistFormGroup">
+              <label for="message">Votre message</label>
+              <textarea id="message"></textarea>
+            </div>
+            <button type="submit">Envoyer</button>
+          </form>
+        </div>
+      </section>
     </main>
     <script type="module" src="./src/photographer-page.js"></script>
-</body>
-
+  </body>
 </html>

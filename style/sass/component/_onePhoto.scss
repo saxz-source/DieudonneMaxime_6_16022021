@@ -1,0 +1,51 @@
+#photoFeed {
+    width: 100%;
+    height : 20vh;
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    align-items: center;
+    flex-wrap: wrap;
+    padding : 5%;
+
+    article {
+        width : 21em;
+        margin : 2rem 1rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        color : $font-secondary;
+
+        .thePhoto {
+            width:100%;
+            height : 18em;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .photoInfos {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            height : 5vh;
+            width : 100%;
+
+            .photoStats {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                flex-direction: row;
+                width : 35%;
+
+                .heart {
+                    width: 1em;
+                    height:1em;
+                }
+
+            }
+        }
+    }
+}

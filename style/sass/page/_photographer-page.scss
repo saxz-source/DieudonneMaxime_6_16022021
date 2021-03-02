@@ -1,43 +1,62 @@
 #photographerBanner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: $bg-third;
+  padding: 2.5em;
+  width: 100%;
+
+  .leftBanner {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background : $bg-third;
-    padding : 2.5em;
-    width : 100%;
-
-    .leftBanner {
-        display: flex;
-        justify-content: flex-start;
-        align-items: flex-start;
-      .photographerResume{
-        padding-right : 2em;
+    justify-content: flex-start;
+    align-items: flex-start;
+    .photographerResume {
+      padding-right: 2em;
+      h1 {
+        font-size: 3em;
+        color: $font-primary;
+        font-weight: 400;
       }
-
-        ul {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
+      p {
+        font-weight: 400;
+        margin-bottom: 1em;
+      }
+      #phFrom {
+        font-size: 1.4em;
+        color: $font-secondary;
+      }
+      #phSentence {
+        margin-bottom: 1em;
+      }
     }
 
-    #photographerImg {
-        width: 25vh;
-        height : 25vh;
-        border-radius: 100%;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
+    ul {
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
+  }
 
-    
+  #photographerImg {
+    width: 25vh;
+    height: 25vh;
+    border-radius: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
 }
 
 #portfolio {
-    .sortBy{
-        display: flex;
-        justify-content: center;
-        align-items: center;
+  .sortBy {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-weight: 700;
+    font-size: 1.1em;
+    p {
+      padding-right: 1em;
     }
+  }
 }

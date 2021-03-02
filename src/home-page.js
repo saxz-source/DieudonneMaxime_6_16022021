@@ -7,7 +7,8 @@ makeRequest("get", "src/bdd/photographers.json")
     .then((r) => {
         let displayedPhotographers = r.photographers
         console.log(displayedPhotographers)
-        createPhotographers(displayedPhotographers)
+        let mainOrSolo = "main"
+        createPhotographers(displayedPhotographers, mainOrSolo)
         handleTagLinks(displayedPhotographers)
     })
 

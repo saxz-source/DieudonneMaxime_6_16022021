@@ -17,15 +17,44 @@ a {
   text-decoration: none;
 }
 
-button, .button {
+button {
+  width: 10em;
+  height: 3.8em;
+  border-radius: 5px;
+  background: #901C1C;
+  color: #FAFAFA;
+  font-weight: 700;
+  font-size: 1.1em;
+  cursor: pointer;
+  border: none;
+}
+button:hover, button:focus {
+  background: #D3573C;
+  color: black;
+}
+
+select {
+  width: 10em;
+  height: 3.8em;
+  border-radius: 5px;
+  background: #901C1C;
+  color: #FAFAFA;
+  font-weight: 700;
+  font-size: 1.1em;
+  padding-left: 0.5em;
+  cursor: pointer;
+  border: none;
+}
+select option {
   width: 170px;
   height: 69px;
   border-radius: 5px;
   background: #901C1C;
-}
-button:hover, .button:hover {
-  background: #D3573C;
   color: #FAFAFA;
+  border-top: 1px solid white;
+  font-weight: 700;
+  padding: 2em;
+  cursor: pointer;
 }
 
 .tagLinks {
@@ -54,6 +83,52 @@ button:hover, .button:hover {
   margin: 0.1em;
 }
 
+#photoFeed {
+  width: 100%;
+  height: 20vh;
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 5%;
+}
+#photoFeed article {
+  width: 21em;
+  margin: 2rem 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: #901C1C;
+}
+#photoFeed article .thePhoto {
+  width: 100%;
+  height: 18em;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+#photoFeed article .photoInfos {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 5vh;
+  width: 100%;
+}
+#photoFeed article .photoInfos .photoStats {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  width: 35%;
+}
+#photoFeed article .photoInfos .photoStats .heart {
+  width: 1em;
+  height: 1em;
+}
+
 #likesAndPrice {
   position: fixed;
   bottom: 0;
@@ -62,22 +137,89 @@ button:hover, .button:hover {
   padding: 0.5em;
 }
 
-header {
+#formModal {
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  display: none;
+}
+#formModal .formDiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  min-width: 50vh;
+  background: #D3573C;
+  padding: 1em 2em 2em;
+}
+#formModal .formDiv header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  font-size: 1.8em;
+}
+#formModal .formDiv header h1 {
+  padding: 0 1em 1em 0;
+}
+#formModal .formDiv header span {
+  color: white;
+  cursor: pointer;
+  font-size: 2em;
+}
+#formModal .formDiv form {
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+}
+#formModal .formDiv form .artistFormGroup {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  width: 100%;
+  font-size: 1.25em;
+  font-weight: 400;
+}
+#formModal .formDiv form .artistFormGroup input,
+#formModal .formDiv form .artistFormGroup textarea {
+  width: 100%;
+  margin-bottom: 1.5em;
+  height: 3.5em;
+  padding: 0.5em;
+}
+#formModal .formDiv form .artistFormGroup textarea {
+  min-height: 9em;
+}
+#formModal .formDiv form button {
+  align-self: flex-start;
+  height: 3.8em;
+}
+
+header {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  position: relative;
+  min-height: 8vh;
 }
 header img {
-  padding: 2em;
+  position: absolute;
+  left: 5em;
+  top: 2em;
 }
 header .contentNav .tagUl {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: baseline;
   flex-wrap: wrap;
 }
-header p {
+header .goContent {
   background: #D3573C;
   border-radius: 5px;
   padding: 0.2em 0.5em;
@@ -85,6 +227,44 @@ header p {
   top: 0.5em;
   right: 40%;
   cursor: pointer;
+}
+
+#lightBox {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  display: none;
+}
+#lightBox .lightSpace {
+  position: relative;
+  padding: 0.6em 2em;
+  width: 80%;
+  height: 80vh;
+}
+#lightBox .lightSpace span {
+  position: absolute;
+  color: #901C1C;
+  font-size: 2em;
+}
+#lightBox .lightSpace #closeLightBox {
+  right: 1em;
+  top: 1em;
+}
+#lightBox .lightSpace #rightSpan {
+  right: 1em;
+  top: 49%;
+}
+#lightBox .lightSpace #leftSpan {
+  left: 1em;
+  top: 49%;
+}
+#lightBox .lightSpace #lightImg {
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 main {
@@ -162,6 +342,22 @@ main {
 #photographerBanner .leftBanner .photographerResume {
   padding-right: 2em;
 }
+#photographerBanner .leftBanner .photographerResume h1 {
+  font-size: 3em;
+  color: #D3573C;
+  font-weight: 400;
+}
+#photographerBanner .leftBanner .photographerResume p {
+  font-weight: 400;
+  margin-bottom: 1em;
+}
+#photographerBanner .leftBanner .photographerResume #phFrom {
+  font-size: 1.4em;
+  color: #901C1C;
+}
+#photographerBanner .leftBanner .photographerResume #phSentence {
+  margin-bottom: 1em;
+}
 #photographerBanner .leftBanner ul {
   display: flex;
   justify-content: center;
@@ -177,9 +373,15 @@ main {
 }
 
 #portfolio .sortBy {
+  width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
+  font-weight: 700;
+  font-size: 1.1em;
+}
+#portfolio .sortBy p {
+  padding-right: 1em;
 }
 
 /*# sourceMappingURL=style.css.map */
