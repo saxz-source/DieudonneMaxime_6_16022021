@@ -109,6 +109,9 @@ select option {
   background-repeat: no-repeat;
   background-size: cover;
 }
+#photoFeed article video {
+  object-fit: cover;
+}
 #photoFeed article .photoInfos {
   display: flex;
   flex-direction: row;
@@ -125,8 +128,9 @@ select option {
   width: 35%;
 }
 #photoFeed article .photoInfos .photoStats .heart {
-  width: 1em;
-  height: 1em;
+  width: 0.8em;
+  height: 0.8em;
+  cursor: pointer;
 }
 
 #likesAndPrice {
@@ -201,17 +205,18 @@ select option {
 }
 
 header {
-  width: 100%;
+  float: left;
+  width: 75%;
   display: flex;
   justify-content: center;
-  align-items: flex-end;
+  align-items: center;
   position: relative;
   min-height: 8vh;
+  padding: 1em 1em;
 }
-header img {
-  position: absolute;
-  left: 5em;
-  top: 2em;
+header .logo {
+  padding: 1em;
+  align-self: baseline;
 }
 header .contentNav .tagUl {
   display: flex;
@@ -275,6 +280,15 @@ main {
   align-items: center;
   flex-wrap: wrap;
   padding: 5%;
+}
+
+#index {
+  float: right;
+}
+#index h1 {
+  position: absolute;
+  top: 1em;
+  right: 2em;
 }
 
 .homeView {

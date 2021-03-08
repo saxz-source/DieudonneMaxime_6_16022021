@@ -25,6 +25,7 @@ export class Media {
   }
 
   static getMediaName(image) {
+    console.log(image);
     let mediaName = image.split("_").splice(1).join(" ").split(".")[0];
     let formattedName =
       mediaName.split("")[0].toUpperCase() + mediaName.substr(1);
@@ -45,7 +46,8 @@ export class Media {
   }
 
   getPhotoUrl(nn) {
-    return `style/images/sample_photo/${nn.replace(/ /g, "")}/${this.image}`;
+    let media = this.image ? this.image : this.video;
+    return `style/images/sample_photo/${nn.replace(/ /g, "")}/${media}`;
   }
 
   async createMediaView() {
@@ -62,6 +64,15 @@ export class Media {
       thePhoto.classList.add("thePhoto");
       onePhoto.appendChild(thePhoto);
       thePhoto.style.backgroundImage = `url("${this.getPhotoUrl(name)}")`;
+    } else if (this.video) {
+      let thePhoto = document.createElement("video");
+      thePhoto.classList.add("thePhoto");
+      onePhoto.appendChild(thePhoto);
+
+      let videoSource = document.createElement("source");
+      videoSource.setAttribute("src", `${this.getPhotoUrl(name)}`);
+      videoSource.setAttribute("type", `video/mp4`);
+      thePhoto.appendChild(videoSource);
     } else {
       return;
     }
@@ -91,16 +102,29 @@ export class Media {
     photoLikes.classList.add("photoLikes");
     photoStats.appendChild(photoLikes);
 
-    photoName.innerHTML = Media.getMediaName(this.image);
+    let photoHeart = document.createElement("img");
+    photoHeart.setAttribute("src", "./style/images/heart.svg");
+    photoHeart.classList.add("heart");
+    photoStats.appendChild(photoHeart);
+
+    photoName.innerHTML = Media.getMediaName(
+      this.image ? this.image : this.video
+    );
     photoPrice.innerHTML = this.price + " €";
-    photoLikes.innerHTML =
-      this.likes + '<img href="../../style/images/heart.svg" class="heart" >';
+    photoLikes.innerHTML = this.likes;
+
+    photoHeart.addEventListener("click", (e) => {
+      this.likes++;
+      this.totalLikes++;
+      photoLikes.innerHTML = this.likes;
+      document.getElementById("totalLikes").innerHTML = this.totalLikes;
+    });
 
     document.getElementById("totalLikes").innerHTML = this.totalLikes;
   }
 
   static setLightBox(array) {
-      console.log(array)
+    console.log(array);
   }
 
   createLightMedia(arrayImg) {

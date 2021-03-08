@@ -1,4 +1,4 @@
-import { createPhotographers } from "./functions/create-photographers.js";
+import { createHomePagePhotographers } from "./functions/create-photographers.js";
 import { makeRequest } from "./functions/httpRequest.js";
 import { handleTagLinks } from "./functions/links-handler.js"
 
@@ -8,7 +8,7 @@ makeRequest("get", "src/bdd/photographers.json")
         let displayedPhotographers = r.photographers
         console.log(displayedPhotographers)
         let mainOrSolo = "main"
-        createPhotographers(displayedPhotographers, mainOrSolo)
+        createHomePagePhotographers(displayedPhotographers, mainOrSolo)
         handleTagLinks(displayedPhotographers)
     })
 

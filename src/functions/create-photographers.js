@@ -1,7 +1,7 @@
 import { PhotographerClass } from "../classes/photographers.js";
 
-function createPhotographers(photographersArray) {
-    if (photographersArray.length > 1) {
+function createHomePagePhotographers(photographersArray) {
+  
         for (let ph of photographersArray) {
             ph = new PhotographerClass(
                 ph.name,
@@ -14,9 +14,14 @@ function createPhotographers(photographersArray) {
                 ph.portrait
             )
             ph.createAView()
-        }
-    } else {
-        let ph = photographersArray[0]
+   
+
+    }
+}
+
+function createSoloPagePhotographers(photographersArray) {
+  
+    for (let ph of photographersArray) {
         ph = new PhotographerClass(
             ph.name,
             ph.id,
@@ -29,7 +34,9 @@ function createPhotographers(photographersArray) {
         )
         ph.createPhotographerBanner()
 
-    }
+
+}
 }
 
-export { createPhotographers }
+
+export { createHomePagePhotographers, createSoloPagePhotographers }

@@ -1,4 +1,4 @@
-import { createPhotographers } from "./functions/create-photographers.js";
+import { createSoloPagePhotographers } from "./functions/create-photographers.js";
 import { createMedias } from "./functions/create-media.js";
 import { makeRequest } from "./functions/httpRequest.js";
 import { Media } from "./classes/medias.js";
@@ -10,7 +10,7 @@ console.log(phId);
 makeRequest("get", "src/bdd/photographers.json").then((r) => {
   let thePhotographer = r.photographers.filter((phot) => phot.id == phId);
   let mainOrSolo = "solo";
-  createPhotographers(thePhotographer, mainOrSolo);
+  createSoloPagePhotographers(thePhotographer, mainOrSolo);
 });
 
 makeRequest("get", "src/bdd/photos.json").then((r) => {

@@ -1,5 +1,4 @@
-import { makeRequest } from "./httpRequest.js";
-import { createPhotographers } from "./create-photographers.js"
+import { createHomePagePhotographers } from "./create-photographers.js"
 
 export function handleTagLinks(arrayOfPhotographers) {
     let index = document.getElementById("index")
@@ -8,7 +7,7 @@ export function handleTagLinks(arrayOfPhotographers) {
         tag.addEventListener("click", e => {
             let tagName = tag.innerText.substr(1).toLowerCase()
             index.innerText = ""
-            createPhotographers(arrayOfPhotographers.filter(ph => ph.tags.includes(tagName)))
+            createHomePagePhotographers(arrayOfPhotographers.filter(ph => ph.tags.includes(tagName)))
             handleTagLinks(arrayOfPhotographers)
         })
     })
