@@ -1,16 +1,56 @@
+$bg-primary: #901c1c;
+$bg-secondary: #d3573c;
+$bg-third: #fafafa;
 
+$font-primary: #d3573c;
+$font-secondary: #901c1c;
+$font-third: #525252;
 
+$first-font: "DMSans";
 
+$screen-sm-min: 576px;
 
-$bg-primary : #901C1C;
-$bg-secondary : #D3573C;
-$bg-third : #FAFAFA;
+// Small tablets (portrait view)
+$screen-md-min: 768px;
 
-$font-primary : #D3573C;
-$font-secondary : #901C1C;
-$font-third : #525252;
+// Tablets and small desktops
+$screen-lg-min: 992px;
 
-$first-font : "DMSans";
+// Large tablets and desktops
+$screen-xl-min: 1200px;
 
+// Small devices
+@mixin sm {
+  @media (max-width: #{$screen-sm-min}) {
+    @content;
+  }
+}
 
+// Medium devices
+@mixin md {
+  @media (min-width: #{$screen-md-min}) {
+    @content;
+  }
+}
+
+// Large devices
+@mixin lg {
+  @media (min-width: #{$screen-lg-min}) {
+    @content;
+  }
+}
+
+// Extra large devices
+@mixin xl {
+  @media (min-width: #{$screen-xl-min}) {
+    @content;
+  }
+}
+
+// Custom devices
+@mixin rwd($screen) {
+  @media (min-width: $screen+"px") {
+    @content;
+  }
+}
 

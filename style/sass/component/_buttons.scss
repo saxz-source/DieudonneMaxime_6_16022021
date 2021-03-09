@@ -8,6 +8,9 @@ button {
   font-size: 1.1em;
   cursor: pointer;
   border : none;
+  @include sm {
+    height : 2em;
+  }
 
   &:hover,
   &:focus {

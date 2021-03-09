@@ -1,39 +1,67 @@
 #photographerBanner {
+  align-self: flex-start;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-direction: row;
   background: $bg-third;
   padding: 2.5em;
   width: 100%;
+  @include sm {
+    padding: 0;
+    flex-wrap: nowrap;
+    position: relative;
+  }
 
   .leftBanner {
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
+    width: 75%;
+
     .photographerResume {
       padding-right: 2em;
+      @include sm {
+        padding: 0;
+      }
       h1 {
         font-size: 3em;
         color: $font-primary;
         font-weight: 400;
+        @include sm {
+          font-size: 1.9em;
+        }
       }
       p {
         font-weight: 400;
-        margin-bottom: 1em;
+        margin-bottom: 0.6em;
       }
       #phFrom {
         font-size: 1.4em;
         color: $font-secondary;
+        @include sm {
+          font-size: 1em;
+        }
       }
       #phSentence {
         margin-bottom: 1em;
+        @include sm {
+          font-size: 0.8em;
+        }
       }
     }
 
     ul {
       display: flex;
-      justify-content: center;
+      justify-content: flex-start;
       align-items: center;
+      padding: 0;
+
+      .taglinks {
+        @include sm {
+          font-size: 0.6em;
+        }
+      }
     }
   }
 
@@ -44,6 +72,13 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    @include sm {
+      height: 13vh;
+      width: 13vh;
+      position: absolute;
+      top: -0.1em;
+      right: 0.1em;
+    }
   }
 }
 
@@ -55,8 +90,21 @@
     align-items: center;
     font-weight: 700;
     font-size: 1.1em;
+    @include sm {
+      display: none;
+    }
     p {
       padding-right: 1em;
     }
+  }
+}
+
+#contactMe {
+  @include sm {
+    position: fixed;
+    bottom: 3em;
+    left: 50%;
+    bottom: 5%;
+    transform: translateX(-50%);
   }
 }

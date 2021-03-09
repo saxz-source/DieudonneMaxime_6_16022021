@@ -9,11 +9,18 @@ main {
 }
 
 #index {
-  float: right;
   h1 {
     position: absolute;
-    top: 1em;
+    top: 0.8em;
     right: 2em;
+    font-size: 2.5em;
+    color: $font-secondary;
+    font-weight: 400;
+    @include sm {
+      font-size: 1.1em;
+      top: 1.6em;
+      right: 1em;
+    }
   }
 }
 
@@ -24,11 +31,24 @@ main {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  @include sm {
+    width: 100%;
+  }
 
   h2 {
-    font-size: 2.25rem;
+    font-size: 2.1rem;
     color: $font-primary;
     font-weight: 400;
+  }
+
+  p {
+    color: $font-secondary;
+    font-size: 1.05em;
+  }
+
+  .sentence {
+    color: black;
+    font-size: 0.9em;
   }
 
   .divPortrait {
@@ -44,10 +64,7 @@ main {
       background-position: center;
       background-repeat: no-repeat;
       background-size: cover;
-    }
-    p {
-      color: $font-secondary;
-      font-size: 0.82rem;
+      margin-bottom: 1em;
     }
   }
 
@@ -58,11 +75,10 @@ main {
     flex-direction: column;
     font-weight: 400;
 
-    & p {
-      font-size: 0.62rem;
-    }
     .price {
       color: $font-third;
+      font-size: 0.9em;
+      margin-bottom: 0.5em;
     }
   }
 

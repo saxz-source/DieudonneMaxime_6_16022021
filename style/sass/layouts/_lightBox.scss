@@ -1,39 +1,38 @@
 #lightBox {
-    position:fixed;
-    width : 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items:center;
-    display: none;
-  
-    .lightSpace {
-        position:relative;
-        padding : 0.6em 2em;
-        width : 80%;
-        height:80vh;
-        span {
-            position : absolute;
-            color : $font-secondary;
-            font-size: 2em;
-        }
-        #closeLightBox {
-            right : 1em;
-            top : 1em;
-        }
-        #rightSpan {
-            right : 1em;
-            top : 49%;
-        }
-        #leftSpan {
-            left : 1em;
-            top : 49%;
-        }
-        #lightImg{
-            background-position: center;
-            background-size: contain;
-            background-repeat: no-repeat;
-        }
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  display: none;
+
+  .lightSpace {
+    position: relative;
+    padding: 0.6em 2em;
+    width: 80%;
+    height: 80vh;
+    span {
+      position: absolute;
+      color: $font-secondary;
+      font-size: 2em;
     }
-   
+    #closeLightBox {
+      right: 1em;
+      top: 1em;
+    }
+    #rightSpan {
+      right: 1em;
+      top: 49%;
+    }
+    #leftSpan {
+      left: 1em;
+      top: 49%;
+    }
+    #lightImg {
+      background-position: center;
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+  }
 }
