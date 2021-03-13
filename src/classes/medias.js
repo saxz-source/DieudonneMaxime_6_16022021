@@ -1,4 +1,5 @@
 import { makeRequest } from "../functions/httpRequest.js";
+import { prepareLightBox } from "../functions/create-media.js";
 
 export class Media {
   constructor(
@@ -10,7 +11,8 @@ export class Media {
     likes,
     date,
     price,
-    totalLikes
+    totalLikes,
+    order
   ) {
     this.id = id;
     this.photographerId = photographerId;
@@ -23,6 +25,7 @@ export class Media {
     this.name = this.getName();
     this.totalLikes = totalLikes;
     this.globalObject = this.globalObject;
+    this.order = order;
   }
 
   static getMediaName(image) {
@@ -32,12 +35,12 @@ export class Media {
     return formattedName;
   }
 
-  async getName() {
+  async getName(photId) {
     let nana;
     await makeRequest("get", "src/bdd/photographers.json")
       .then((r) => {
         let name = r.photographers.filter(
-          (ph) => ph.id === this.photographerId
+          (ph) => ph.id === (photId ? photId : this.photographerId)
         )[0].name;
         nana = name;
       })
@@ -45,9 +48,13 @@ export class Media {
     return nana;
   }
 
-  getPhotoUrl(nn) {
-    let media = this.image ? this.image : this.video;
-    return `style/images/sample_photo/${nn.replace(/ /g, "")}/${media}`;
+  getPhotoUrl(artistName, photoId) {
+    let media;
+    if (photoId) media = photoId;
+
+    if (!photoId) media = this.image ? this.image : this.video;
+
+    return `style/images/sample_photo/${artistName.replace(/ /g, "")}/${media}`;
   }
 
   async createMediaView() {
@@ -121,22 +128,79 @@ export class Media {
 
     document.getElementById("totalLikes").innerHTML = this.totalLikes;
 
-    thePhoto.addEventListener("click", (e)=> {
-      let mediaId = e.target.id
-      console.log(mediaId)
-      this.createLightMedia(mediaId);
+    thePhoto.addEventListener("click", (e) => {
+      let mediaId = e.target.id;
+      let lightMediaDisplayed = prepareLightBox.filter((i) => i.id == mediaId);
+     let lightLength = prepareLightBox.length
+      this.createLightMedia(lightMediaDisplayed[0], lightLength);
     });
   }
 
-  static setLightBox(array) {
-    this.globalObject = array;
-    console.log(this.globalObject);
+  async fillLightMedia(lightMediaObject) {
+    const lightImg = document.getElementById("lightImg");
+    lightImg.setAttribute(
+      "src",
+      `${this.getPhotoUrl(
+        await this.getName(lightMediaObject.photographerId),
+        lightMediaObject.image ? lightMediaObject.image : lightMediaObject.video
+      )}`
+    );
+    const lightName = document.getElementById("lightName");
+    lightName.textContent = Media.getMediaName(
+      lightMediaObject.image ? lightMediaObject.image : lightMediaObject.video
+    );
   }
 
-  createLightMedia(mediaId) {
-    console.log(mediaId);
-    // const lightBox = document.getElementById("lightBox");
-    // lightBox.style.display = flex;
-    // const lightImg = document.getElementById("lightImg");
+  createLightMedia(lightMedia, lightLength) {
+    let actualMediaOrder = lightMedia.order;
+   
+
+    this.fillLightMedia(lightMedia);
+    //get and create elements of light box
+    const lightBox = document.getElementById("lightBox");
+    const closeLightBox = document.getElementById("closeLightBox");
+    const leftSpan = document.getElementById("leftSpan");
+    const rightSpan = document.getElementById("rightSpan");
+    this.handleArrows(lightLength, actualMediaOrder)
+
+
+    lightBox.style.display = "flex";
+    closeLightBox.addEventListener("click", () => {
+      lightBox.style.display = "none";
+    });
+
+    //set left click
+    leftSpan.addEventListener("click", () => {
+      actualMediaOrder--;
+      console.log(actualMediaOrder);
+      let lightMediaDisplayed = prepareLightBox.filter(
+        (i) => parseInt(i.order) === actualMediaOrder
+      );
+
+      this.fillLightMedia(lightMediaDisplayed[0]);
+      this.handleArrows(lightLength, actualMediaOrder)
+
+    });
+
+    //set right click
+    rightSpan.addEventListener("click", () => {
+      actualMediaOrder++;
+      let lightMediaDisplayed = prepareLightBox.filter(
+        (i) => parseInt(i.order) === actualMediaOrder
+      );
+      
+      this.fillLightMedia(lightMediaDisplayed[0]);
+      this.handleArrows(lightLength, actualMediaOrder)
+     
+    });
+
+    console.log(lightMedia.photographerId);
+  }
+
+  handleArrows(lightLength, mediaOrder){
+    if(mediaOrder === lightLength-1) rightSpan.style.display = "none"
+    if(mediaOrder < lightLength-1) rightSpan.style.display = "block"
+    if(mediaOrder === 0) leftSpan.style.display = "none"
+    if(mediaOrder > 0) leftSpan.style.display = "block"
   }
 }

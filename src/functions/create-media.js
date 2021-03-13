@@ -1,8 +1,10 @@
 import { Media } from "../classes/medias.js";
 
+
+export let prepareLightBox = []
+
 function createMedias(mediaArray) {
   let i = 0
-  let prepareLightBox = [];
   let totalLikes = 0;
   for (let media of mediaArray) {
     totalLikes = totalLikes + parseInt(media.likes);
@@ -25,14 +27,14 @@ function createMedias(mediaArray) {
     let mediaToLightBox = {
       order : i,
       id: media.id,
-      image: media.image ? media.image : null,
+      image : media.image ? media.image : null,
       video: media.video ? media.video : null,
+      photographerId : media.photographerId
     };
     prepareLightBox.push(mediaToLightBox);
     i++
     
   }
-  Media.setLightBox(prepareLightBox)
 }
 
 export { createMedias };

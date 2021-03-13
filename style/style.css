@@ -292,6 +292,7 @@ header .goContent {
   justify-content: center;
   align-items: center;
   display: none;
+  background-color: white;
 }
 #lightBox .lightSpace {
   position: relative;
@@ -303,6 +304,7 @@ header .goContent {
   position: absolute;
   color: #901c1c;
   font-size: 2em;
+  cursor: pointer;
 }
 #lightBox .lightSpace #closeLightBox {
   right: 1em;
@@ -316,10 +318,10 @@ header .goContent {
   left: 1em;
   top: 49%;
 }
-#lightBox .lightSpace #lightImg {
-  background-position: center;
-  background-size: contain;
-  background-repeat: no-repeat;
+#lightBox .lightSpace .lightImg {
+  object-fit: contain;
+  width: 100%;
+  height: 100%;
 }
 
 main {
