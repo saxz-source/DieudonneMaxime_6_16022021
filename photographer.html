@@ -28,7 +28,7 @@
             <p id="phSentence"></p>
             <ul id="phUlTags"></ul>
           </div>
-          <button id="contactMe">Contactez-moi</button>
+          <button id="contactMe" aria-label="Contact Me">Contactez-moi</button>
         </div>
         <div id="photographerImg"></div>
       </header>
@@ -36,9 +36,9 @@
         <div class="sortBy">
           <p>Trier par :</p>
           <select class="sortMenu button" id="sortMenu">
-            <option value="popularity" name="popularity">Popularité</option>
-            <option value="date" name="date">Date</option>
-            <option value="title" name="title">Titre</option>
+            <option value="popularity" name="popularity" aria-label="Order by popularity">Popularité</option>
+            <option value="date" name="date" aria-label="Order by date">Date</option>
+            <option value="title" name="title" aria-label="Order by title">Titre</option>
           </select>
         </div>
         <section id="photoFeed"></section>
@@ -46,16 +46,21 @@
 
       <!-------LightBox-->
 
-      <section id="lightBox">
+      <section id="lightBox" aria-label="image closeup view">
         <div class="lightSpace">
-          <span id="closeLightBox">X</span>
-          <span id="leftSpan"> L </span>
+          <span id="closeLightBox" aria-label="Close dialog"> X</span>
+          <span id="leftSpan" aria-label="Previous Image"> L </span>
           <div class="lightImg">
-            <img id="lightImg" ></img>
+            <figure>
+
+              <img id="lightImg" ></img>
+              <figcaption id="lightName" class="lightName"></figcaption>
+            </figure>
+            
           </div>
          
-          <span id="rightSpan"> R </span>
-          <div id="lightName"></div>
+          <span id="rightSpan" aria-label="Next Image"> R </span>
+          
         </div>
       </section>
 
@@ -63,7 +68,7 @@
       <div id="likesAndPrice">
         <div class="likesTotal">
           <div id="totalLikes"></div>
-          <img src="./style/images/heart-black.svg" class="heart" />
+          <img src="./style/images/heart-black.svg" class="heart" alt="likes"/>
         </div>
         <div id="globalPrice"></div>
       </div>
@@ -71,10 +76,10 @@
       <!--------Modale de formulaire -->
 
       <section id="formModal">
-        <div class="formDiv">
+        <div class="formDiv" id="formDiv">
           <header>
             <h1 id="artistFormTitle"></h1>
-            <span id="closeModal">X</span>
+            <span id="closeModal" aria-label="Close Contact Form">X</span>
           </header>
 
           <form id="artistForm">
@@ -94,7 +99,7 @@
               <label for="message">Votre message</label>
               <textarea id="message"></textarea>
             </div>
-            <button type="submit">Envoyer</button>
+            <button type="submit" aria-label="Send">Envoyer</button>
           </form>
         </div>
       </section>

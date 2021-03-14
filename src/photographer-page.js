@@ -60,15 +60,18 @@ sortMenu.addEventListener("input", function (e) {
 });
 
 const formModal = document.getElementById("formModal");
+const formDiv = document.getElementById("formDiv")
 const closeModal = document.getElementById("closeModal");
 const artistFormTitle = document.getElementById("artistFormTitle");
 const contactMe = document.getElementById("contactMe");
 
 contactMe.addEventListener("click", function () {
+  
     makeRequest("get", "src/bdd/photographers.json")
     .then((r) => {
       console.log(r);
       let name = r.photographers.filter((person) => person.id == phId)[0].name;
+      formDiv.setAttribute("aria-label", "Contact Me " + name)
       artistFormTitle.innerHTML = "Contactez-moi <br>" + name;
 
     })

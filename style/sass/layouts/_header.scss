@@ -41,8 +41,12 @@ header {
     border-radius: 5px;
     padding: 0.2em 0.5em;
     position: fixed;
-    top: 0.5em;
-    right: 40%;
+    top: 1em;
+    left: 50%;
+    transform: translateX(-50%);
     cursor: pointer;
+    @include sm {
+      display: none;
+    }
   }
 }

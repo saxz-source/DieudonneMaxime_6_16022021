@@ -36,6 +36,7 @@ export class PhotographerClass {
     index.appendChild(article);
     let divPortrait = document.createElement("a");
     divPortrait.setAttribute("href", `photographer.html?id=${this.id}`);
+    divPortrait.setAttribute("aria-label", `${this.name}`)
     divPortrait.classList.add("divPortrait");
     article.appendChild(divPortrait);
     let nameNode = document.createElement("h2");
@@ -43,6 +44,7 @@ export class PhotographerClass {
     let portraitNode = document.createElement("div");
     portraitNode.classList.add("homePhotoImg");
     portraitNode.style.backgroundImage = `url(${this.getIdPhotoUrl()})`;
+    portraitNode.setAttribute("alt", "")
 
     divPortrait.appendChild(portraitNode);
     divPortrait.appendChild(nameNode);
@@ -70,6 +72,7 @@ export class PhotographerClass {
     for (let tag of this.tags) {
       let divTag = document.createElement("li");
       divTag.classList.add("tagLinks");
+      divTag.setAttribute("aria-label", "Tag");
       divTag.innerHTML = "#" + tag;
       tagsLinksDiv.appendChild(divTag);
     }
@@ -84,6 +87,7 @@ export class PhotographerClass {
     phSentence.textContent = this.tagline;
     let photographerImg = document.getElementById("photographerImg");
     photographerImg.style.backgroundImage = `url(${this.getIdPhotoUrl()})`;
+    photographerImg.setAttribute("aria-label", `${this.name}`)
 
     let phUlTags = document.getElementById("phUlTags");
     for (let tag of this.tags) {
@@ -93,8 +97,8 @@ export class PhotographerClass {
       phUlTags.appendChild(divTag);
     }
 
-    let globalPrice = document.getElementById("globalPrice")
-    globalPrice.textContent = this.price + " € / jour"
+    let globalPrice = document.getElementById("globalPrice");
+    globalPrice.textContent = this.price + " € / jour";
   }
 
   getIdPhotoUrl() {

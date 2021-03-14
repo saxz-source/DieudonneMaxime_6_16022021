@@ -15,10 +15,12 @@
       background: $bg-secondary;
       padding: 1em 2em 2em;
       header {
+        padding: 0;
         display: flex;
         justify-content: space-between;
         align-items: flex-start;
-        font-size: 1.8em;
+        font-size: 1.5em;
+        position: relative;
         h1 {
            padding: 0 1em 1em 0;
         }
@@ -26,11 +28,13 @@
             color: white;
             cursor : pointer;
             font-size: 2em;
+            position : absolute;
+            top: 0;
+            right : 0;
           }
       }
       form {
         width: 100%;
-
         display: flex;
         justify-content: center;
         align-items: center;
