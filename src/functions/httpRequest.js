@@ -1,4 +1,11 @@
-export function makeRequest(method, url, data) {
+/**
+ * A request function handled with promise
+ * @param  method  the method used for the request
+ * @param url the url to ask datas
+ * @returns
+ */
+
+export function makeRequest(method, url) {
     return new Promise(function (resolve, reject) {
         var request = new XMLHttpRequest();
         request.open(method, url);
@@ -9,11 +16,10 @@ export function makeRequest(method, url, data) {
             } else {
                 reject({
                     status: this.status,
-                    statusText: request.statusText
+                    statusText: request.statusText,
                 });
             }
         };
         request.send();
-
     });
-};
+}

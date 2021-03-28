@@ -1,9 +1,7 @@
 @font-face {
-    font-family:"DMSans";
+    font-family: "DMSans";
     src: url("./fonts/DMSans/DMSans-Regular.ttf") format("truetype");
-    
 }
-
 
 * {
     box-sizing: border-box;
@@ -12,10 +10,20 @@
     font-family: "DMSans", sans-serif;
 }
 
-ul, li {
+ul,
+li {
     list-style-type: none;
 }
 
 a {
     text-decoration: none;
+}
+
+.hidden {
+    height: 1px;
+    left: 0;
+    overflow: hidden;
+    position: absolute;
+    top: -10000px;
+    width: 1px;
 }

@@ -1,26 +1,11 @@
 import { PhotographerClass } from "../classes/photographers.js";
 
-function createHomePagePhotographers(photographersArray) {
-  
-        for (let ph of photographersArray) {
-            ph = new PhotographerClass(
-                ph.name,
-                ph.id,
-                ph.city,
-                ph.country,
-                ph.tags,
-                ph.tagline,
-                ph.price,
-                ph.portrait
-            )
-            ph.createAView()
-   
-
-    }
-}
-
-function createSoloPagePhotographers(photographersArray) {
-  
+/**
+ * Create a new instance of PhotographerClass class for each photographers
+ * @param photographersArray an array of all photographers objects
+ * @param  mainOrSolo determines the class method to trigger
+ */
+function createPhotographers(photographersArray, mainOrSolo) {
     for (let ph of photographersArray) {
         ph = new PhotographerClass(
             ph.name,
@@ -31,12 +16,10 @@ function createSoloPagePhotographers(photographersArray) {
             ph.tagline,
             ph.price,
             ph.portrait
-        )
-        ph.createPhotographerBanner()
-
-
+        );
+        if (mainOrSolo === "main") ph.createAView();
+        if (mainOrSolo === "solo") ph.createPhotographerBanner();
+    }
 }
-}
 
-
-export { createHomePagePhotographers, createSoloPagePhotographers }
+export { createPhotographers };

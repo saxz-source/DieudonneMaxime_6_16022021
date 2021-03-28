@@ -13,7 +13,9 @@
   </head>
 
   <body>
-    <header>
+    <div id="photographerPageMainWrapper" aria-hidden="false">
+  
+    <header role="banner">
       <a href="index.html" class="logo">
         <img src="./style/images/logo.svg" alt="FishEye Home Page" />
       </a>
@@ -34,7 +36,7 @@
       </header>
       <section id="portfolio">
         <div class="sortBy">
-          <p>Trier par :</p>
+          <label for="sortMenu">Trier par :</label>
           <select class="sortMenu button" id="sortMenu">
             <option value="popularity" name="popularity" aria-label="Order by popularity">Popularité</option>
             <option value="date" name="date" aria-label="Order by date">Date</option>
@@ -42,68 +44,79 @@
           </select>
         </div>
         <section id="photoFeed"></section>
-      </section>
-
-      <!-------LightBox-->
-
-      <section id="lightBox" aria-label="image closeup view">
-        <div class="lightSpace">
-          <span id="closeLightBox" aria-label="Close dialog"> X</span>
-          <span id="leftSpan" aria-label="Previous Image"> L </span>
-          <div class="lightImg">
-            <figure>
-
-              <img id="lightImg" ></img>
-              <figcaption id="lightName" class="lightName"></figcaption>
-            </figure>
-            
-          </div>
-         
-          <span id="rightSpan" aria-label="Next Image"> R </span>
-          
-        </div>
-      </section>
-
-      <!-------Module en bas à droite-->
-      <div id="likesAndPrice">
+         <!-------Module en bas à droite-->
+      <aside id="likesAndPrice">
         <div class="likesTotal">
           <div id="totalLikes"></div>
           <img src="./style/images/heart-black.svg" class="heart" alt="likes"/>
         </div>
         <div id="globalPrice"></div>
+      </aside>
+      </section>
+    </main>
+  </div>
+
+      <!-------LightBox-->    
+
+      <div id="lightBox" aria-label="image closeup view" role="dialog"  >
+        <div class="lightSpace">
+          <span id="closeLightBox" aria-label="Close dialog" role="button" tabindex="0"> X</span>
+          <span id="leftSpan" aria-label="Previous Image" role="link" tabindex="0" > L </span>
+          <div class="lightMedia" >
+            <video id="lightVideo" controls>
+              <source id="lightVideoSource" >
+            </video>
+            <figure>
+              <img id="lightImg"></img>
+              <figcaption id="lightName" class="lightName"></figcaption>
+            </figure>
+            
+          </div>
+         
+          <span id="rightSpan" aria-label="Next Image" role="link" tabindex="0"> R </span>
+          
+        </div>
       </div>
+
+     
 
       <!--------Modale de formulaire -->
 
-      <section id="formModal">
+      <div id="formModal" role="dialog" aria-describedby="artistFormTitle">
         <div class="formDiv" id="formDiv">
           <header>
             <h1 id="artistFormTitle"></h1>
-            <span id="closeModal" aria-label="Close Contact Form">X</span>
+            <span id="closeModal" aria-label="Close Contact Form" role="button" tabindex="0">X</span>
           </header>
 
-          <form id="artistForm">
+          <form id="artistForm" >
             <div class="artistFormGroup">
-              <label for="firstName"> Prénom</label>
-              <input type="text" id="firstName" />
+              <label for="firstName" id="firstName"> Prénom</label>
+              <input type="text" id="firstName" aria-labelledby="firstName" aria-describedby="first-name-describe" tabindex="0" />
+              <span id="first-name-describe" class="hidden">Insérez votre prénom</span>
             </div>
             <div class="artistFormGroup">
-              <label for="secondName"> Nom</label>
-              <input type="text" id="secondName" />
+              <label for="secondName" id="secondName"> Nom</label>
+              <input type="text" id="secondName" aria-labelledby="secondName" aria-describedby="second-name-describe" tabindex="0" />
+              <span id="second-name-describe" class="hidden">Insérez votre nom</span>
             </div>
             <div class="artistFormGroup">
-              <label for="email"> Email</label>
-              <input type="email" id="email" />
+              <label for="email" id='email'> Email</label>
+              <input type="email" id="email"  aria-labelledby="email" aria-describedby="mail-describe"  tabindex="0" />
+              <span id="mail-describe" class="hidden">Insérez votre e-mail</span>
             </div>
             <div class="artistFormGroup">
-              <label for="message">Votre message</label>
-              <textarea id="message"></textarea>
+              <label for="message" id="message">Votre message</label>
+              <textarea id="message" aria-labelledby="message" aria-describedby="message-describe" tabindex="0"></textarea>
+              <span id="message-describe" class="hidden">Insérez votre message</span>
             </div>
-            <button type="submit" aria-label="Send">Envoyer</button>
+            <button type="submit" aria-label="Send" id="sendForm" tabindex="0">Envoyer</button>
           </form>
         </div>
-      </section>
-    </main>
+      </div>
+
+
+
     <script type="module" src="./src/photographer-page.js"></script>
   </body>
 </html>

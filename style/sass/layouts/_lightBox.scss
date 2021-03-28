@@ -41,12 +41,18 @@
       top: 49%;
       
     }
-    .lightImg {
+    .lightMedia {
       img {
         object-fit: contain;
         max-width: 70vw;
         max-height: 70vh;
       }
+      video {
+        object-fit: contain;
+        max-width: 70vw;
+        max-height: 70vh;
+      }
+      
      
     }
     .lightName {
