@@ -1,7 +1,7 @@
 import { createPhotographers } from "./functions/create-photographers.js";
 import { makeRequest } from "./functions/httpRequest.js";
 import { handleTagLinks } from "./functions/links-handler.js";
-
+import { handleScrollLink } from "./functions/handleScrollLink.js";
 
 /**
  * Get photographers from photographers bdd (json file)
@@ -14,18 +14,4 @@ makeRequest("get", "src/bdd/photographers.json").then((r) => {
     handleTagLinks(displayedPhotographers);
 });
 
-
-// Handle the display of the top link
-let scrollLink = document.querySelector(".goContent");
-window.addEventListener("scroll", function () {
-    if (window.pageYOffset > 50) {
-        scrollLink.style.display = "initial";
-    } else {
-        scrollLink.style.display = "none";
-    }
-});
-
-// Handle the scroll when click on the top link
-scrollLink.addEventListener("click", function(){
-    document.documentElement.scrollTop = 0;
-})
+handleScrollLink();

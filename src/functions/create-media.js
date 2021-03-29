@@ -1,3 +1,4 @@
+//import { LightBox } from "../classes/lightBox.js";
 import { Media } from "../classes/medias.js";
 
 export const prepareLightBox = [];
@@ -37,6 +38,7 @@ function createMedias(mediaArray) {
             video: media.video ? media.video : null,
             photographerId: media.photographerId,
         };
+
         prepareLightBox.push(mediaToLightBox);
         i++;
     }

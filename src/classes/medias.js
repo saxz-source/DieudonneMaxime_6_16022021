@@ -22,10 +22,28 @@ export class Media {
         this.likes = likes;
         this.date = date;
         this.price = price;
-        this.name = this.getName();
+        this.name = this.getArtistName();
         this.totalLikes = totalLikes;
         this.globalObject = this.globalObject;
         this.order = order;
+    }
+
+    /**
+     * Create medias in the photographer's page
+     */
+    async createMediaView() {
+        let name = await this.getArtistName();
+        let gotPhotoName = Media.getMediaName(
+            this.image ? this.image : this.video
+        );
+
+        let photoFeed = document.getElementById("photoFeed");
+        let onePhoto = document.createElement("article");
+        onePhoto.classList.add("onePhoto");
+        photoFeed.appendChild(onePhoto);
+
+        this.setPhotoContent(onePhoto, name, gotPhotoName);
+        this.setPhotoInfos(onePhoto, gotPhotoName);
     }
 
     /**
@@ -45,7 +63,7 @@ export class Media {
      * @param photId the photographer's id
      * @returns the name of the photographer
      */
-    async getName(photId) {
+    async getArtistName(photId) {
         let nana;
         await makeRequest("get", "src/bdd/photographers.json")
             .then((r) => {
@@ -75,44 +93,13 @@ export class Media {
     }
 
     /**
-     * Create medias in the photographer's page
+     *
+     * @param onePhoto the container (html element)
+     * @param  gotPhotoName the media name
+     * @returns
      */
-    async createMediaView() {
-        let name = await this.getName();
-        let gotPhotoName = Media.getMediaName(
-            this.image ? this.image : this.video
-        );
 
-        let photoFeed = document.getElementById("photoFeed");
-        let onePhoto = document.createElement("article");
-        onePhoto.classList.add("onePhoto");
-        photoFeed.appendChild(onePhoto);
-
-        // Display the image whether it's a photo or a video
-        let thePhoto;
-        if (this.image) {
-            thePhoto = document.createElement("div");
-            thePhoto.id = this.id;
-            thePhoto.classList.add("thePhoto");
-            onePhoto.appendChild(thePhoto);
-            thePhoto.style.backgroundImage = `url("${this.getPhotoUrl(name)}")`;
-            thePhoto.setAttribute("aria-label", gotPhotoName);
-        } else if (this.video) {
-            thePhoto = document.createElement("video");
-            thePhoto.classList.add("thePhoto");
-            onePhoto.appendChild(thePhoto);
-            thePhoto.setAttribute(
-                "aria-label",
-                "vidéo intitulée " + gotPhotoName
-            );
-            let videoSource = document.createElement("source");
-            thePhoto.id = this.id;
-            videoSource.setAttribute("src", `${this.getPhotoUrl(name)}`);
-            thePhoto.appendChild(videoSource);
-        } else {
-            return;
-        }
-        thePhoto.setAttribute("tabindex", "0    ");
+    setPhotoInfos(onePhoto, gotPhotoName) {
         // Display the informations below the media
         let photoInfos = document.createElement("div");
         photoInfos.classList.add("photoInfos");
@@ -153,6 +140,41 @@ export class Media {
             document.getElementById("totalLikes").innerHTML = this.totalLikes;
         });
         document.getElementById("totalLikes").innerHTML = this.totalLikes;
+    }
+
+    /**
+     *
+     * @param onePhoto the container (html element)
+     * @param  name the artist's Name
+     * @param  gotPhotoName the media name
+     * @returns
+     */
+    setPhotoContent(onePhoto, name, gotPhotoName) {
+        // Display the image whether it's a photo or a video
+        let thePhoto;
+        if (this.image) {
+            thePhoto = document.createElement("div");
+            thePhoto.id = this.id;
+            thePhoto.classList.add("thePhoto");
+            onePhoto.appendChild(thePhoto);
+            thePhoto.style.backgroundImage = `url("${this.getPhotoUrl(name)}")`;
+            thePhoto.setAttribute("aria-label", gotPhotoName);
+        } else if (this.video) {
+            thePhoto = document.createElement("video");
+            thePhoto.classList.add("thePhoto");
+            onePhoto.appendChild(thePhoto);
+            thePhoto.setAttribute(
+                "aria-label",
+                "vidéo intitulée " + gotPhotoName
+            );
+            let videoSource = document.createElement("source");
+            thePhoto.id = this.id;
+            videoSource.setAttribute("src", `${this.getPhotoUrl(name)}`);
+            thePhoto.appendChild(videoSource);
+        } else {
+            return;
+        }
+        thePhoto.setAttribute("tabindex", "0");
 
         // prepare the display of the lightBox after a click
         thePhoto.addEventListener("click", (e) => {
@@ -301,7 +323,7 @@ export class Media {
             lightImg.setAttribute(
                 "src",
                 `${this.getPhotoUrl(
-                    await this.getName(lightMediaObject.photographerId),
+                    await this.getArtistName(lightMediaObject.photographerId),
                     lightMediaObject.image
                 )}`
             );
@@ -318,7 +340,7 @@ export class Media {
             // lightVideoSource.setAttribute(
             //     "src",
             //     `${this.getPhotoUrl(
-            //         await this.getName(lightMediaObject.photographerId),
+            //         await this.getArtistName(lightMediaObject.photographerId),
             //         lightMediaObject.video
             //     )}`
             // );
@@ -338,7 +360,7 @@ export class Media {
 
         if (direction === "right") actualMediaOrder++;
         if (direction === "left") actualMediaOrder--;
-        
+
         let lightMediaDisplayed = prepareLightBox.filter(
             (i) => parseInt(i.order) === actualMediaOrder
         );
