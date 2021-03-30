@@ -27,8 +27,6 @@ export class FormModal {
         this.submitForm();
     }
 
-
-
     submitForm() {
         sendForm.addEventListener("click", (e) => {
             e.preventDefault();
@@ -44,8 +42,10 @@ export class FormModal {
     listenKeyClose() {
         formModal.addEventListener("keydown", (e) => {
             if (e.key === "Escape") this.onCloseModal();
-            if (e.key === "Enter" && closeModal === document.activeElement)
+            if (e.keyCode === 13 && document.activeElement === closeModal) {
+                e.preventDefault();
                 this.onCloseModal();
+            }
         });
     }
 
@@ -79,6 +79,7 @@ export class FormModal {
     setDisplayAndFocus() {
         formModal.style.display = "flex";
         closeModal.focus();
+        // contactMe.setAttribute("tabindex", "4")
     }
 
     setModalHeader() {
@@ -109,9 +110,7 @@ export class FormModal {
      */
     onCloseModal() {
         photographerPageMainWrapper.setAttribute("aria-hidden", "false");
-        //  contactMe.focus()
-
         formModal.style.display = "none";
-        console.log(document.activeElement);
+        contactMe.focus();
     }
 }

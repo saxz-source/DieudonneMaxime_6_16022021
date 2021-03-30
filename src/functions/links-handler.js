@@ -19,5 +19,20 @@ export function handleTagLinks(arrayOfPhotographers) {
             );
             handleTagLinks(arrayOfPhotographers);
         });
+        tag.addEventListener("keydown", (e) => {
+            if (e.key === "Enter") {
+                let tagName = tag.innerText.substr(1).toLowerCase();
+                index.innerText = "";
+                createPhotographers(
+                    arrayOfPhotographers.filter((ph) =>
+                        ph.tags.includes(tagName)
+                    ),
+                    "main"
+                );
+                handleTagLinks(arrayOfPhotographers);
+            } else {
+                return;
+            }
+        });
     });
 }

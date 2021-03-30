@@ -1,7 +1,7 @@
 //import { LightBox } from "../classes/lightBox.js";
 import { Media } from "../classes/medias.js";
 
-export const prepareLightBox = [];
+export let prepareLightBox = [];
 
 /**
  * Create new media instances of Media class for each media
@@ -10,6 +10,8 @@ export const prepareLightBox = [];
  */
 
 function createMedias(mediaArray) {
+   // Reinitialise the lightBox Array in order to get the rigth medias order
+   prepareLightBox=[]
     let i = 0;
 
     // counts total likes
@@ -28,20 +30,27 @@ function createMedias(mediaArray) {
             media.likes,
             media.date,
             media.price,
+            media.description,
             totalLikes
         );
         media.createMediaView();
+
+     
+        // Fill the lightBox Array 
         let mediaToLightBox = {
             order: i,
             id: media.id,
             image: media.image ? media.image : null,
             video: media.video ? media.video : null,
+            description : media.description,
             photographerId: media.photographerId,
         };
 
         prepareLightBox.push(mediaToLightBox);
         i++;
     }
+    // let newLightBox = new LightBox(prepareLightBox)
+    // newLightBox.createLightBox()
 }
 
 /**

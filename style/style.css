@@ -8,6 +8,10 @@
   padding: 0;
   font-family: "DMSans", sans-serif;
 }
+*:focus {
+  border: 1px solid #d3573c;
+  outline: 4px solid #95FFF9;
+}
 
 ul,
 li {
@@ -59,6 +63,7 @@ select {
   padding-left: 0.5em;
   cursor: pointer;
   border: none;
+  margin-left: 1em;
 }
 select option {
   width: 170px;
@@ -150,6 +155,12 @@ select option {
   align-items: center;
   flex-direction: row;
   width: 35%;
+}
+#photoFeed article .photoInfos .photoStats .photoLikesandH {
+  width: 35%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 #photoFeed article .photoInfos .photoStats .heart {
   margin-left: -1.3em;
@@ -381,7 +392,7 @@ header .goContent {
   font-size: 1.4em;
 }
 
-main {
+main section {
   width: 100%;
   display: flex;
   justify-content: center;
@@ -391,7 +402,7 @@ main {
   padding: 5%;
 }
 
-#index h1 {
+.main h1 {
   position: absolute;
   top: 0.8em;
   right: 2em;
@@ -400,7 +411,7 @@ main {
   font-weight: 400;
 }
 @media (max-width: 576px) {
-  #index h1 {
+  .main h1 {
     font-size: 1.1em;
     top: 1.6em;
     right: 1em;
@@ -563,6 +574,7 @@ main {
   align-items: center;
   font-weight: 700;
   font-size: 1.1em;
+  margin-left: 1em;
 }
 @media (max-width: 576px) {
   #portfolio .sortBy {

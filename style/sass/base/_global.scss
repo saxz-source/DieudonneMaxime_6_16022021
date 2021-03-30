@@ -8,6 +8,11 @@
     margin: 0;
     padding: 0;
     font-family: "DMSans", sans-serif;
+    &:focus{
+        border: 1px solid #d3573c;
+      outline :  4px solid #95FFF9;
+    }
+  
 }
 
 ul,
@@ -27,3 +32,4 @@ a {
     top: -10000px;
     width: 1px;
 }
+

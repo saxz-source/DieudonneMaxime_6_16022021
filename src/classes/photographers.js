@@ -36,11 +36,12 @@ export class PhotographerClass {
             divTag.classList.add("tagLinks");
             divTag.setAttribute("aria-label", "Tag");
             divTag.setAttribute("role", "link");
+            divTag.setAttribute("tabindex", "0");
             divTag.innerHTML = "#" + tag;
             tagsLinksDiv.appendChild(divTag);
         }
     }
-    
+
     generateInformationsView(articleDiv) {
         // Create the informations below the portrait
         let staticTextDiv = document.createElement("div");

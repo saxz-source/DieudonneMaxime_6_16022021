@@ -11,6 +11,7 @@ export class Media {
         likes,
         date,
         price,
+        description,
         totalLikes,
         order
     ) {
@@ -22,6 +23,7 @@ export class Media {
         this.likes = likes;
         this.date = date;
         this.price = price;
+        this.description=description;
         this.name = this.getArtistName();
         this.totalLikes = totalLikes;
         this.globalObject = this.globalObject;
@@ -117,16 +119,21 @@ export class Media {
         photoPrice.classList.add("photoPrice");
         photoStats.appendChild(photoPrice);
 
+        let photoLikesAndHeart = document.createElement("div");
+        photoStats.appendChild(photoLikesAndHeart);
+        photoLikesAndHeart.setAttribute("tabindex", "0");
+        photoLikesAndHeart.classList.add("photoLikesandH");
+
         let photoLikes = document.createElement("div");
         photoLikes.classList.add("photoLikes");
-        photoStats.appendChild(photoLikes);
+        photoLikesAndHeart.appendChild(photoLikes);
 
         // Fill the informations's fields
         let photoHeart = document.createElement("img");
         photoHeart.setAttribute("src", "./style/images/heart.svg");
         photoHeart.setAttribute("aria-label", "likes");
         photoHeart.classList.add("heart");
-        photoStats.appendChild(photoHeart);
+        photoLikesAndHeart.appendChild(photoHeart);
 
         photoName.innerHTML = gotPhotoName;
         photoPrice.innerHTML = this.price + " €";
@@ -139,7 +146,17 @@ export class Media {
             photoLikes.innerHTML = this.likes;
             document.getElementById("totalLikes").innerHTML = this.totalLikes;
         });
-        document.getElementById("totalLikes").innerHTML = this.totalLikes;
+
+        photoLikesAndHeart.addEventListener("keydown", (e) => {
+            if (e.key === "Enter") {
+                this.likes++;
+                this.totalLikes++;
+                photoLikes.innerHTML = this.likes;
+                document.getElementById(
+                    "totalLikes"
+                ).innerHTML = this.totalLikes;
+            }
+        });
     }
 
     /**
@@ -149,7 +166,7 @@ export class Media {
      * @param  gotPhotoName the media name
      * @returns
      */
-    setPhotoContent(onePhoto, name, gotPhotoName) {
+    setPhotoContent(onePhoto, name) {
         // Display the image whether it's a photo or a video
         let thePhoto;
         if (this.image) {
@@ -158,14 +175,14 @@ export class Media {
             thePhoto.classList.add("thePhoto");
             onePhoto.appendChild(thePhoto);
             thePhoto.style.backgroundImage = `url("${this.getPhotoUrl(name)}")`;
-            thePhoto.setAttribute("aria-label", gotPhotoName);
+            thePhoto.setAttribute("aria-label", this.description);
         } else if (this.video) {
             thePhoto = document.createElement("video");
             thePhoto.classList.add("thePhoto");
             onePhoto.appendChild(thePhoto);
             thePhoto.setAttribute(
                 "aria-label",
-                "vidéo intitulée " + gotPhotoName
+                "vidéo intitulée " + this.description
             );
             let videoSource = document.createElement("source");
             thePhoto.id = this.id;
@@ -176,14 +193,23 @@ export class Media {
         }
         thePhoto.setAttribute("tabindex", "0");
 
+        thePhoto.addEventListener("keydown", (e) => {
+            if (e.key === "Enter") {
+                e.preventDefault();
+                let mediaId = e.target.id;
+                let lightMediaDisplayed = prepareLightBox.filter(
+                    (i) => i.id == mediaId
+                );
+                this.createLightMedia(lightMediaDisplayed[0]);
+            }
+        });
         // prepare the display of the lightBox after a click
         thePhoto.addEventListener("click", (e) => {
             let mediaId = e.target.id;
             let lightMediaDisplayed = prepareLightBox.filter(
                 (i) => i.id == mediaId
             );
-            let lightLength = prepareLightBox.length;
-            this.createLightMedia(lightMediaDisplayed[0], lightLength);
+            this.createLightMedia(lightMediaDisplayed[0]);
         });
     }
 
@@ -192,12 +218,13 @@ export class Media {
      * @param  lightMedia the lightMEdiaArray
      * @param  lightLength the length of the lightMediaArray
      */
-    createLightMedia(lightMedia, lightLength) {
+    createLightMedia(lightMedia) {
         let photographerPageMainWrapper = document.getElementById(
             "photographerPageMainWrapper"
         );
         console.log(lightMedia);
         let actualMediaOrder = lightMedia.order;
+        let lightLength = prepareLightBox.length;
 
         this.fillLightMedia(lightMedia);
         //get and create elements of light box
@@ -252,12 +279,14 @@ export class Media {
                     );
                     break;
                 case "Enter":
-                    if (leftSpan === document.activeElement)
+                    if (leftSpan === document.activeElement) {
+                        e.preventDefault();
                         actualMediaOrder = this.lightDirection(
                             actualMediaOrder,
                             lightLength,
                             "left"
                         );
+                    }
                     if (rightSpan === document.activeElement)
                         actualMediaOrder = this.lightDirection(
                             actualMediaOrder,
@@ -297,6 +326,7 @@ export class Media {
     onCloseLightBox() {
         photographerPageMainWrapper.setAttribute("aria-hidden", "false");
         lightBox.style.display = "none";
+        document.getElementById("sortMenu").focus();
     }
 
     /**
@@ -306,7 +336,6 @@ export class Media {
     async fillLightMedia(lightMediaObject) {
         console.log(lightMediaObject);
         const lightImg = document.getElementById("lightImg");
-        const lightVideoSource = document.getElementById("lightVideoSource");
         const lightVideo = document.getElementById("lightVideo");
 
         // Get the name of the media
@@ -327,24 +356,25 @@ export class Media {
                     lightMediaObject.image
                 )}`
             );
-            lightImg.setAttribute("alt", lightImgName);
+            lightImg.setAttribute("alt", lightMediaObject.description);
 
             // Case : it is a video
         } else if (lightMediaObject.video) {
             lightImg.style.display = "none";
-            lightVideo.style.display = "initial";
+            const lightVideoSource = document.createElement("source");
             lightVideoSource.setAttribute(
                 "src",
-                "./style/images/sample_photo/Ellie-RoseWilkens/Sport_Tricks_in_the_air.mp4"
+                `${this.getPhotoUrl(
+                    await this.getArtistName(lightMediaObject.photographerId),
+                    lightMediaObject.video
+                )}`
             );
-            // lightVideoSource.setAttribute(
-            //     "src",
-            //     `${this.getPhotoUrl(
-            //         await this.getArtistName(lightMediaObject.photographerId),
-            //         lightMediaObject.video
-            //     )}`
-            // );
+
+            lightVideo.appendChild(lightVideoSource);
+
             lightVideo.setAttribute("type", "video/mp4");
+            lightVideo.style.display = "block";
+            console.log(lightVideo.canPlayType("video/mp4"));
         }
 
         // Display the media name

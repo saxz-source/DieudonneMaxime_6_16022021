@@ -9,7 +9,9 @@
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet"
     />
-    <title>Document</title>
+    <link rel="icon" href="./style/images/logo.svg" type="image/svg"/>
+
+    <title>FishEye</title>
   </head>
 
   <body>
@@ -36,8 +38,8 @@
       </header>
       <section id="portfolio">
         <div class="sortBy">
-          <label for="sortMenu">Trier par :</label>
-          <select class="sortMenu button" id="sortMenu">
+          <label id="labelSortMenu" for="sortMenu">Trier par </label>
+          <select class="sortMenu button" id="sortMenu" aria-labelledby="labelSortMenu">
             <option value="popularity" name="popularity" aria-label="Order by popularity">Popularité</option>
             <option value="date" name="date" aria-label="Order by date">Date</option>
             <option value="title" name="title" aria-label="Order by title">Titre</option>
@@ -56,7 +58,7 @@
     </main>
   </div>
 
-      <!-------LightBox-->    
+      <!-------LightBox-    <source id="lightVideoSource" src="" type="video/mp4" -->    
 
       <div id="lightBox" aria-label="image closeup view" role="dialog"  >
         <div class="lightSpace">
@@ -64,10 +66,10 @@
           <span id="leftSpan" aria-label="Previous Image" role="link" tabindex="0" > L </span>
           <div class="lightMedia" >
             <video id="lightVideo" controls>
-              <source id="lightVideoSource" >
+           
             </video>
             <figure>
-              <img id="lightImg"></img>
+              <img id="lightImg" alt=""></img>
               <figcaption id="lightName" class="lightName"></figcaption>
             </figure>
             
@@ -91,23 +93,23 @@
 
           <form id="artistForm" >
             <div class="artistFormGroup">
-              <label for="firstName" id="firstName"> Prénom</label>
-              <input type="text" id="firstName" aria-labelledby="firstName" aria-describedby="first-name-describe" tabindex="0" />
+              <label for="firstName" id="labelFirstName"> Prénom</label>
+              <input type="text" id="firstName" aria-labelledby="labelFirstName" aria-describedby="first-name-describe" tabindex="0" />
               <span id="first-name-describe" class="hidden">Insérez votre prénom</span>
             </div>
             <div class="artistFormGroup">
-              <label for="secondName" id="secondName"> Nom</label>
-              <input type="text" id="secondName" aria-labelledby="secondName" aria-describedby="second-name-describe" tabindex="0" />
+              <label for="secondName" id="labelSecondName"> Nom</label>
+              <input type="text" id="secondName" aria-labelledby="labelSecondName" aria-describedby="second-name-describe" tabindex="0" />
               <span id="second-name-describe" class="hidden">Insérez votre nom</span>
             </div>
             <div class="artistFormGroup">
-              <label for="email" id='email'> Email</label>
-              <input type="email" id="email"  aria-labelledby="email" aria-describedby="mail-describe"  tabindex="0" />
+              <label for="email" id='labelEmail'> Email</label>
+              <input type="email" id="email"  aria-labelledby="labelEmail" aria-describedby="mail-describe"  tabindex="0" />
               <span id="mail-describe" class="hidden">Insérez votre e-mail</span>
             </div>
             <div class="artistFormGroup">
-              <label for="message" id="message">Votre message</label>
-              <textarea id="message" aria-labelledby="message" aria-describedby="message-describe" tabindex="0"></textarea>
+              <label for="message" id="labelMessage">Votre message</label>
+              <textarea id="message" aria-labelledby="labelMessage" aria-describedby="message-describe" tabindex="0"></textarea>
               <span id="message-describe" class="hidden">Insérez votre message</span>
             </div>
             <button type="submit" aria-label="Send" id="sendForm" tabindex="0">Envoyer</button>

@@ -46,6 +46,13 @@
         align-items: center;
         flex-direction: row;
         width: 35%;
+        .photoLikesandH{
+          width: 35%;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          
+        }
 
         .heart {
           margin-left: -1.3em;

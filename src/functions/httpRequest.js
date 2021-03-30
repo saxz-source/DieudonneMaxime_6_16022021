@@ -20,6 +20,8 @@ export function makeRequest(method, url) {
                 });
             }
         };
+        request.setRequestHeader("Access-Control-Allow-Origin", "*");
+
         request.send();
     });
 }

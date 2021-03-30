@@ -1,41 +1,137 @@
 <!DOCTYPE html>
 <html lang="fr">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="./style/style.css" rel="stylesheet" />
-    <title>Document</title>
-  </head>
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link href="./style/style.css" rel="stylesheet" />
+        <link rel="icon" href="./style/images/logo.svg" type="image/svg" />
+        <title>FishEye</title>
+    </head>
 
-  <body>
-    <header role="banner">
-      <a href="index.html" class="logo">
-        <img src="./style/images/logo.svg" alt="FishEye Home Page" />
-      </a>
-      <div class="contentNav">
-        <nav aria-label="photographer categories">
-          <ul class="tagUl">
-            <li class="tagLinks" aria-label="Portrait" role="link" >#Portrait</li>
-            <li class="tagLinks" aria-label="Art" role="link">#Art</li>
-            <li class="tagLinks" aria-label="Fashion" role="link">#Fashion</li>
-            <li class="tagLinks" aria-label="Architecture" role="link">#Architecture</li>
-            <li class="tagLinks" aria-label="Travel" role="link">#Travel</li>
-            <li class="tagLinks" aria-label="Sport" role="link">#Sport</li>
-            <li class="tagLinks" aria-label="Animals" role="link">#Animals</li>
-            <li class="tagLinks" aria-label="Events" role="link">#Events</li>
-          </ul>
-        </nav>
-      </div>
-      <div class="titleNav">
-        <p class="goContent" id="scrollLink">Passer au contenu</p>
-      </div>
-    </header>
+    <body>
+        <header role="banner">
+            <a href="index.html" class="logo">
+                <img src="./style/images/logo.svg" alt="FishEye Home Page" />
+            </a>
+            <div class="contentNav">
+                <nav aria-label="photographer categories">
+                    <ul class="tagUl">
+                        <li
+                            class="tagLinks"
+                            aria-label="Portrait"
+                            role="link"
+                            tabindex="0"
+                            aria-describedby="portait-describe"
+                        >
+                            #Portrait
+                        </li>
+                        <span id="portrait-describe" class="hidden">
+                            Portrait category
+                        </span>
+                        <li
+                            class="tagLinks"
+                            aria-label="Art"
+                            role="link"
+                            tabindex="0"
+                            aria-describedby="art-describe"
+                        >
+                            #Art
+                        </li>
+                        <span id="art-describe" class="hidden">
+                            Art category
+                        </span>
 
-    <main id="index">
-        <h1> Nos photographes</h1>
-    </main>
+                        <li
+                            class="tagLinks"
+                            aria-label="Fashion"
+                            role="link"
+                            tabindex="0"
+                            aria-describedby="fashion-describe"
+                        >
+                            #Fashion
+                        </li>
+                        <span id="fashion-describe" class="hidden">
+                            Fashion category
+                        </span>
 
-    <script type="module" src="./src/home-page.js"></script>
-  </body>
+                        <li
+                            class="tagLinks"
+                            aria-label="Architecture"
+                            role="link"
+                            tabindex="0"
+                            aria-describedby="architecture-describe"
+                        >
+                            #Architecture
+                        </li>
+                        <span id="architecture-describe" class="hidden">
+                            Architecture category
+                        </span>
+
+                        <li
+                            class="tagLinks"
+                            aria-label="Travel"
+                            role="link"
+                            tabindex="0"
+                            aria-describedby="travel-describe"
+                        >
+                            #Travel
+                        </li>
+                        <span id="travel-describe" class="hidden">
+                            Traval category
+                        </span>
+
+                        <li
+                            class="tagLinks"
+                            aria-label="Sport"
+                            role="link"
+                            tabindex="0"
+                            aria-describedby="sport-describe"
+                        >
+                            #Sport
+                        </li>
+                        <span id="sport-describe" class="hidden">
+                            Sport category
+                        </span>
+
+                        <li
+                            class="tagLinks"
+                            aria-label="Animals"
+                            role="link"
+                            tabindex="0"
+                            aria-describedby="animals-describe"
+                        >
+                            #Animals
+                        </li>
+                        <span id="Animals-describe" class="hidden">
+                            Animals category
+                        </span>
+
+                        <li
+                            class="tagLinks"
+                            aria-label="Events"
+                            role="link"
+                            tabindex="0"
+                            aria-describedby="events-describe"
+                        >
+                            #Events
+                        </li>
+                        <span id="events-describe" class="hidden">
+                            Events category
+                        </span>
+                    </ul>
+                </nav>
+            </div>
+            <div class="titleNav">
+                <p class="goContent" id="scrollLink">Passer au contenu</p>
+            </div>
+        </header>
+
+        <main class="main">
+            <h1>Nos photographes</h1>
+            <section id="index"></section>
+        </main>
+
+        <script type="module" src="./src/home-page.js"></script>
+    </body>
 </html>
