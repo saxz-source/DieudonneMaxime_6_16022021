@@ -162,6 +162,11 @@ select option {
   justify-content: space-between;
   align-items: center;
 }
+@media (max-width: 576px) {
+  #photoFeed article .photoInfos .photoStats .photoLikesandH {
+    width: 45%;
+  }
+}
 #photoFeed article .photoInfos .photoStats .heart {
   margin-left: -1.3em;
   width: 0.8em;
@@ -226,6 +231,13 @@ select option {
   background: #d3573c;
   padding: 2em 2em 4em;
 }
+@media (max-width: 576px) {
+  #formModal .formDiv {
+    font-size: 1em;
+    height: 100%;
+    padding: 1em 2em;
+  }
+}
 #formModal .formDiv header {
   padding: 0;
   display: flex;
@@ -234,6 +246,11 @@ select option {
   font-size: 1.5em;
   position: relative;
   font-weight: 400;
+}
+@media (max-width: 576px) {
+  #formModal .formDiv header {
+    font-size: 1em;
+  }
 }
 #formModal .formDiv header h1 {
   padding: 0 1em 1em 0;
@@ -245,6 +262,11 @@ select option {
   position: absolute;
   top: -0.2em;
   right: 0;
+}
+@media (max-width: 576px) {
+  #formModal .formDiv header span {
+    font-size: 2em;
+  }
 }
 #formModal .formDiv form {
   width: 100%;
@@ -265,16 +287,38 @@ select option {
 #formModal .formDiv form .artistFormGroup input,
 #formModal .formDiv form .artistFormGroup textarea {
   width: 100%;
-  margin-bottom: 1.5em;
+  margin-bottom: 0.3em;
   height: 3.5em;
   padding: 0.5em;
+}
+@media (max-width: 576px) {
+  #formModal .formDiv form .artistFormGroup input,
+#formModal .formDiv form .artistFormGroup textarea {
+    font-size: 1em;
+    height: 2em;
+  }
 }
 #formModal .formDiv form .artistFormGroup textarea {
   min-height: 12em;
 }
+@media (max-width: 576px) {
+  #formModal .formDiv form .artistFormGroup textarea {
+    font-size: 1em;
+    min-height: 8em;
+  }
+}
 #formModal .formDiv form button {
   align-self: flex-start;
   height: 3.8em;
+}
+
+.formError {
+  display: none;
+  font-size: 0.9em;
+  margin-bottom: 0.5em;
+  padding: 0.2em;
+  color: white;
+  background: #901c1c;
 }
 
 header {
@@ -366,15 +410,28 @@ header .goContent {
 @media (max-width: 576px) {
   #lightBox .lightSpace #closeLightBox {
     font-size: 2em;
+    right: -15px;
   }
 }
 #lightBox .lightSpace #rightSpan {
+  font-size: 4em;
   right: 0;
   top: 49%;
 }
+@media (max-width: 576px) {
+  #lightBox .lightSpace #rightSpan {
+    right: -20px;
+  }
+}
 #lightBox .lightSpace #leftSpan {
+  font-size: 4em;
   left: 0;
   top: 49%;
+}
+@media (max-width: 576px) {
+  #lightBox .lightSpace #leftSpan {
+    left: -20px;
+  }
 }
 #lightBox .lightSpace .lightMedia img {
   object-fit: contain;
@@ -488,7 +545,7 @@ main section {
 }
 @media (max-width: 576px) {
   #photographerBanner {
-    padding: 0;
+    padding: 0 0.5em;
     flex-wrap: nowrap;
     position: relative;
   }
@@ -563,7 +620,7 @@ main section {
     width: 13vh;
     position: absolute;
     top: -0.1em;
-    right: 0.1em;
+    right: 0.2em;
   }
 }
 

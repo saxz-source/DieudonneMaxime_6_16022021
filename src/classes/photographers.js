@@ -93,7 +93,7 @@ export class PhotographerClass {
         phSentence.textContent = this.tagline;
         let photographerImg = document.getElementById("photographerImg");
         photographerImg.style.backgroundImage = `url(${this.getIdPhotoUrl()})`;
-        photographerImg.setAttribute("aria-label", `${this.name}`);
+        photographerImg.setAttribute("aria-label", `${this.name}, (nouvelle fenêtre)`);
 
         // Display tags
         let phUlTags = document.getElementById("phUlTags");

@@ -24,6 +24,12 @@
         width: 60vh;
        background: $bg-secondary;
         padding: 2em 2em 4em;
+        @include sm {
+            font-size: 1em;
+            height : 100%;
+            padding: 1em 2em ;
+        }
+
         header {                    
             padding: 0;
             display: flex;
@@ -32,8 +38,13 @@
             font-size: 1.5em;
             position: relative;
             font-weight: 400;
+            @include sm {
+                font-size: 1em;
+            }
             h1 {
                 padding: 0 1em 1em 0;
+            
+    
             }
             span {
                 color: white;
@@ -42,6 +53,9 @@
                 position: absolute;
                 top: -0.2em;
                 right: 0;
+                @include sm {
+                    font-size: 2em;
+                }
             }
         }
         form {
@@ -50,7 +64,7 @@
             justify-content: center;
             align-items: center;
             flex-direction: column;
-
+        
             .artistFormGroup {
                 display: flex;
                 justify-content: center;
@@ -62,12 +76,21 @@
                 input,
                 textarea {
                     width: 100%;
-                    margin-bottom: 1.5em;
+                    margin-bottom: 0.3em;
                     height: 3.5em;
                     padding: 0.5em;
+                    @include sm {
+                        font-size: 1em;
+                        height : 2em;
+                    }
                 }
                 textarea {
                     min-height: 12em;
+                    @include sm {
+                        font-size: 1em;
+                        min-height : 8em;
+                    }
+        
                 }
             }
             button {
@@ -76,4 +99,14 @@
             }
         }
     }
+}
+
+
+.formError {
+    display: none;
+    font-size: 0.9em;
+    margin-bottom: 0.5em;
+    padding : 0.2em;
+    color : white;
+    background : #901c1c;
 }

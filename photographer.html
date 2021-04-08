@@ -63,7 +63,7 @@
       <div id="lightBox" aria-label="image closeup view" role="dialog"  >
         <div class="lightSpace">
           <span id="closeLightBox" aria-label="Close dialog" role="button" tabindex="0"> X</span>
-          <span id="leftSpan" aria-label="Previous Image" role="link" tabindex="0" > L </span>
+          <span id="leftSpan" aria-label="Previous Image" role="link" tabindex="0" > 	&lt; </span>
           <div class="lightMedia" >
             <video id="lightVideo" controls>
            
@@ -75,7 +75,7 @@
             
           </div>
          
-          <span id="rightSpan" aria-label="Next Image" role="link" tabindex="0"> R </span>
+          <span id="rightSpan" aria-label="Next Image" role="link" tabindex="0"> &gt; </span>
           
         </div>
       </div>
@@ -88,29 +88,37 @@
         <div class="formDiv" id="formDiv">
           <header>
             <h1 id="artistFormTitle"></h1>
-            <span id="closeModal" aria-label="Close Contact Form" role="button" tabindex="0">X</span>
+            <span id="closeModal" aria-label="Fermer le formulaire"  role="button" tabindex="0">X</span>
           </header>
 
           <form id="artistForm" >
             <div class="artistFormGroup">
               <label for="firstName" id="labelFirstName"> Prénom</label>
-              <input type="text" id="firstName" aria-labelledby="labelFirstName" aria-describedby="first-name-describe" tabindex="0" />
-              <span id="first-name-describe" class="hidden">Insérez votre prénom</span>
+              <input type="text" id="firstName" aria-labelledby="labelFirstName" aria-describedby="first-name-describe  " tabindex="0" required  />
+              <span id="first-name-describe" class="hidden">Au moins deux lettres</span>
+              <div class="formError " id="firstInputError">Veuillez entrer un prénom valide.</div>
+
             </div>
             <div class="artistFormGroup">
               <label for="secondName" id="labelSecondName"> Nom</label>
-              <input type="text" id="secondName" aria-labelledby="labelSecondName" aria-describedby="second-name-describe" tabindex="0" />
+              <input type="text" id="secondName" aria-labelledby="labelSecondName" aria-describedby="second-name-describe " tabindex="0" required />
               <span id="second-name-describe" class="hidden">Insérez votre nom</span>
+              <div class="formError" id="secondInputError">Au moins deux lettres.</div>    
+
             </div>
             <div class="artistFormGroup">
               <label for="email" id='labelEmail'> Email</label>
-              <input type="email" id="email"  aria-labelledby="labelEmail" aria-describedby="mail-describe"  tabindex="0" />
+              <input type="email" id="email"  aria-labelledby="labelEmail" aria-describedby="mail-describe "  tabindex="0"  required />
               <span id="mail-describe" class="hidden">Insérez votre e-mail</span>
+              <div class="formError" id="emailInputError">Format email requis.</div>
+
             </div>
             <div class="artistFormGroup">
               <label for="message" id="labelMessage">Votre message</label>
-              <textarea id="message" aria-labelledby="labelMessage" aria-describedby="message-describe" tabindex="0"></textarea>
+              <textarea id="message" aria-labelledby="labelMessage" aria-describedby="message-describe" tabindex="0" required ></textarea>
               <span id="message-describe" class="hidden">Insérez votre message</span>
+              <div class="formError" id="messageInputError">Veuillez entrer un message valide.</div>
+
             </div>
             <button type="submit" aria-label="Send" id="sendForm" tabindex="0">Envoyer</button>
           </form>

@@ -30,15 +30,25 @@
       font-size: 3em;
       @include sm {
         font-size: 2em;
+        right : -15px;
       }
     }
     #rightSpan {
+      font-size: 4em;
       right: 0;
       top: 49%;
+      @include sm {
+        right : -20px;
+      }
     }
     #leftSpan {
+      font-size: 4em;
+
       left: 0;
       top: 49%;
+      @include sm {
+        left : -20px;
+      }
       
     }
     .lightMedia {

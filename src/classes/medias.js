@@ -23,7 +23,7 @@ export class Media {
         this.likes = likes;
         this.date = date;
         this.price = price;
-        this.description=description;
+        this.description = description;
         this.name = this.getArtistName();
         this.totalLikes = totalLikes;
         this.globalObject = this.globalObject;
@@ -34,6 +34,8 @@ export class Media {
      * Create medias in the photographer's page
      */
     async createMediaView() {
+
+        // set variables et get main elements
         let name = await this.getArtistName();
         let gotPhotoName = Media.getMediaName(
             this.image ? this.image : this.video
@@ -44,6 +46,7 @@ export class Media {
         onePhoto.classList.add("onePhoto");
         photoFeed.appendChild(onePhoto);
 
+        // fill the content
         this.setPhotoContent(onePhoto, name, gotPhotoName);
         this.setPhotoInfos(onePhoto, gotPhotoName);
     }
@@ -149,6 +152,7 @@ export class Media {
 
         photoLikesAndHeart.addEventListener("keydown", (e) => {
             if (e.key === "Enter") {
+                e.preventDefault();
                 this.likes++;
                 this.totalLikes++;
                 photoLikes.innerHTML = this.likes;
@@ -182,7 +186,7 @@ export class Media {
             onePhoto.appendChild(thePhoto);
             thePhoto.setAttribute(
                 "aria-label",
-                "vidéo intitulée " + this.description
+                "vidéo. " + this.description
             );
             let videoSource = document.createElement("source");
             thePhoto.id = this.id;
@@ -213,6 +217,8 @@ export class Media {
         });
     }
 
+
+    /*************************Light media section*********************/
     /**
      *
      * @param  lightMedia the lightMEdiaArray
@@ -222,23 +228,27 @@ export class Media {
         let photographerPageMainWrapper = document.getElementById(
             "photographerPageMainWrapper"
         );
-        console.log(lightMedia);
         let actualMediaOrder = lightMedia.order;
         let lightLength = prepareLightBox.length;
 
+        // display the media on screen
         this.fillLightMedia(lightMedia);
+
         //get and create elements of light box
         const lightBox = document.getElementById("lightBox");
         const closeLightBox = document.getElementById("closeLightBox");
         const leftSpan = document.getElementById("leftSpan");
         const rightSpan = document.getElementById("rightSpan");
 
+        // handle the arrow buttons
         this.handleArrows(lightLength, actualMediaOrder);
 
+        // open the lighbox
         photographerPageMainWrapper.setAttribute("aria-hidden", "true");
         lightBox.style.display = "flex";
         closeLightBox.focus();
 
+        // set close the lightbox
         closeLightBox.addEventListener("click", () => {
             this.onCloseLightBox();
         });
@@ -265,6 +275,8 @@ export class Media {
         lightBox.addEventListener("keydown", (e) => {
             switch (e.key) {
                 case "ArrowLeft":
+                    e.preventDefault();
+
                     actualMediaOrder = this.lightDirection(
                         actualMediaOrder,
                         lightLength,
@@ -277,8 +289,11 @@ export class Media {
                         lightLength,
                         "right"
                     );
+                    e.preventDefault();
                     break;
                 case "Enter":
+                    e.preventDefault();
+
                     if (leftSpan === document.activeElement) {
                         e.preventDefault();
                         actualMediaOrder = this.lightDirection(
@@ -297,6 +312,8 @@ export class Media {
                         this.onCloseLightBox();
                     break;
                 case "Escape":
+                    e.preventDefault();
+
                     this.onCloseLightBox();
                 case "Tab":
                     if (e.shiftKey) {
@@ -323,6 +340,9 @@ export class Media {
         console.log(lightMedia.photographerId);
     }
 
+    /**
+     * Close the lightBox and focus on the sortMenu
+     */
     onCloseLightBox() {
         photographerPageMainWrapper.setAttribute("aria-hidden", "false");
         lightBox.style.display = "none";
@@ -334,7 +354,7 @@ export class Media {
      * @param  lightMediaObject An object with lightMedia informations
      */
     async fillLightMedia(lightMediaObject) {
-        console.log(lightMediaObject);
+       // console.log(lightMediaObject);
         const lightImg = document.getElementById("lightImg");
         const lightVideo = document.getElementById("lightVideo");
 
@@ -347,6 +367,7 @@ export class Media {
 
         // Case : it is an image
         if (lightMediaObject.image) {
+            
             lightVideo.style.display = "none";
             lightImg.style.display = "initial";
             lightImg.setAttribute(
@@ -357,6 +378,7 @@ export class Media {
                 )}`
             );
             lightImg.setAttribute("alt", lightMediaObject.description);
+            lightImg.setAttribute("tabindex", "0")
 
             // Case : it is a video
         } else if (lightMediaObject.video) {
@@ -371,10 +393,9 @@ export class Media {
             );
 
             lightVideo.appendChild(lightVideoSource);
-
             lightVideo.setAttribute("type", "video/mp4");
+            lightVideo.setAttribute("tabindex", "0")
             lightVideo.style.display = "block";
-            console.log(lightVideo.canPlayType("video/mp4"));
         }
 
         // Display the media name
@@ -382,6 +403,13 @@ export class Media {
         lightName.textContent = lightImgName;
     }
 
+    /**
+     * Manage the position in the array of the light box images and display the good one.
+     * @param {*} actualMediaOrder the actual media order in the array
+     * @param {*} lightLength the length of the array
+     * @param {*} direction the direction of the navigation in the lightbox
+     * @returns
+     */
     lightDirection(actualMediaOrder, lightLength, direction) {
         if (actualMediaOrder === lightLength - 1 && direction === "right")
             return actualMediaOrder;
@@ -399,6 +427,11 @@ export class Media {
         return actualMediaOrder;
     }
 
+    /**
+     * Handle the visible of the arrows
+     * @param {*} lightLength array lenght
+     * @param {*} mediaOrder the actual media order
+     */
     handleArrows(lightLength, mediaOrder) {
         if (mediaOrder === lightLength - 1) rightSpan.style.display = "none";
         if (mediaOrder < lightLength - 1) rightSpan.style.display = "block";

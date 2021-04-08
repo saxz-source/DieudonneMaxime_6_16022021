@@ -16,6 +16,7 @@ export class FormModal {
         this.secondName = document.getElementById("secondName");
         this.email = document.getElementById("email");
         this.message = document.getElementById("message");
+        this.artistForm = document.getElementById("artistForm");
     }
 
     createFormModal() {
@@ -30,10 +31,17 @@ export class FormModal {
     submitForm() {
         sendForm.addEventListener("click", (e) => {
             e.preventDefault();
-            console.log("Prénom : " + firstName.value);
-            console.log("Nom : " + secondName.value);
-            console.log("Email : " + email.value);
-            console.log("Message : " + message.value);
+
+            if (this.verifyingData() === false) {
+                return;
+            } else {
+                console.log("Prénom : " + firstName.value);
+                console.log("Nom : " + secondName.value);
+                console.log("Email : " + email.value);
+                console.log("Message : " + message.value);
+                this.onCloseModal();
+                this.artistForm.reset();
+            }
         });
     }
     /**
@@ -41,7 +49,10 @@ export class FormModal {
      */
     listenKeyClose() {
         formModal.addEventListener("keydown", (e) => {
-            if (e.key === "Escape") this.onCloseModal();
+            if (e.key === "Escape") {
+                e.preventDefault();
+                this.onCloseModal();
+            }
             if (e.keyCode === 13 && document.activeElement === closeModal) {
                 e.preventDefault();
                 this.onCloseModal();
@@ -76,12 +87,15 @@ export class FormModal {
         });
     }
 
+    /**
+     * Display the modal and focus the close cross
+     */
     setDisplayAndFocus() {
         formModal.style.display = "flex";
         closeModal.focus();
-        // contactMe.setAttribute("tabindex", "4")
     }
 
+    // Get the name of the photographer and display it
     setModalHeader() {
         makeRequest("get", "src/bdd/photographers.json").then((r) => {
             console.log(r);
@@ -112,5 +126,94 @@ export class FormModal {
         photographerPageMainWrapper.setAttribute("aria-hidden", "false");
         formModal.style.display = "none";
         contactMe.focus();
+    }
+
+    // Verify the validity of the informations, based on html constraints
+    // Display alerts on the wrong form fields
+    verifyingData() {
+        // Boolean that will be return : true if no error ; false if error
+        let submitOk = true;
+        var nameRegex = /[0-9,;:!~#{[|`^@\]}?./¤€§*$^%+µ£¨=)_("&)\\]/g;
+        var mailRegex = /\S+@\S+\.\S+/;
+
+        console.log(firstName.value.search(nameRegex));
+        if (
+            !firstName.validity.valid ||
+            firstName.value.search(nameRegex) != -1
+        ) {
+            document.getElementById("firstInputError").style.display = "block";
+            this.removeGreenBorderValidation(firstName);
+            this.firstName.setAttribute("aria-invalid", "true");
+            this.firstName.setAttribute("aria-describedby", "firstInputError");
+            submitOk = false;
+        } else {
+            this.greenBorderValidation(firstName);
+            this.firstName.removeAttribute("aria-invalid");
+            this.firstName.setAttribute("aria-describedby", "first-describe");
+            document.getElementById("firstInputError").style.display = "none";
+        }
+
+        if (
+            !secondName.validity.valid ||
+            secondName.value.search(nameRegex) != -1
+        ) {
+            document.getElementById("secondInputError").style.display = "block";
+            this.removeGreenBorderValidation(secondName);
+
+            this.secondName.setAttribute("aria-invalid", "true");
+            this.secondName.setAttribute(
+                "aria-describedby",
+                "secondInputError"
+            );
+
+            submitOk = false;
+        } else {
+            this.greenBorderValidation(secondName);
+            this.secondName.removeAttribute("aria-invalid");
+            this.secondName.setAttribute("aria-describedby", "second-describe");
+            document.getElementById("secondInputError").style.display = "none";
+        }
+
+        if (!email.validity.valid || !mailRegex.test(email.value)) {
+            document.getElementById("emailInputError").style.display = "block";
+            this.removeGreenBorderValidation(email);
+
+            this.email.setAttribute("aria-invalid", "true");
+            this.email.setAttribute("aria-describedby", "emailInputError");
+
+            submitOk = false;
+        } else {
+            this.greenBorderValidation(email);
+            this.email.removeAttribute("aria-invalid");
+            this.email.setAttribute("aria-describedby", "mail-describe");
+
+            document.getElementById("emailInputError").style.display = "none";
+        }
+
+        if (!message.validity.valid) {
+            document.getElementById("messageInputError").style.display =
+                "block";
+            this.removeGreenBorderValidation(message);
+            this.message.removeAttribute("aria-invalid");
+            this.message.setAttribute("aria-describedby", "messageInputError");
+
+            submitOk = false;
+        } else {
+            this.greenBorderValidation(message);
+            this.message.setAttribute("aria-describedby", "message-describe");
+            this.message.removeAttribute("aria-invalid");
+            document.getElementById("messageInputError").style.display = "none";
+        }
+
+        return submitOk;
+    }
+
+    // Make the element input borders green
+    greenBorderValidation(element) {
+        element.style.border = "2px solid green";
+    }
+
+    removeGreenBorderValidation(element) {
+        element.style.border = "2px solid #95FFF9";
     }
 }

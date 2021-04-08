@@ -9,8 +9,6 @@ export class LightBox extends Media {
         this.closeLightBox = document.getElementById("closeLightBox");
         this.leftSpan = document.getElementById("leftSpan");
         this.rightSpan = document.getElementById("rightSpan");
-        
-
     }
 
 createLightBox(){

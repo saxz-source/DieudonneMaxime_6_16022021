@@ -8,7 +8,7 @@ import { createPhotographers } from "./create-photographers.js";
  */
 export function handleTagLinks(arrayOfPhotographers) {
     let index = document.getElementById("index");
-    let tagLinks = document.querySelectorAll(".tagLinks");
+    let tagLinks = document.querySelectorAll(".tagLinksNav");
     tagLinks.forEach((tag) => {
         tag.addEventListener("click", (e) => {
             let tagName = tag.innerText.substr(1).toLowerCase();
@@ -21,6 +21,7 @@ export function handleTagLinks(arrayOfPhotographers) {
         });
         tag.addEventListener("keydown", (e) => {
             if (e.key === "Enter") {
+                e.preventDefault()
                 let tagName = tag.innerText.substr(1).toLowerCase();
                 index.innerText = "";
                 createPhotographers(
