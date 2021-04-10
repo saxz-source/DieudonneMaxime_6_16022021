@@ -87,12 +87,14 @@ select option {
   justify-content: center;
   align-items: center;
   padding: 0.2em 0.5em;
-  cursor: pointer;
 }
 @media (max-width: 576px) {
   .tagLinks {
     font-size: 0.9em;
   }
+}
+.tagLinksNav {
+  cursor: pointer;
 }
 .tagLinks:hover, .tagLinks:focus {
   background: #901c1c;
@@ -161,6 +163,7 @@ select option {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  cursor: pointer;
 }
 @media (max-width: 576px) {
   #photoFeed article .photoInfos .photoStats .photoLikesandH {
@@ -229,7 +232,7 @@ select option {
   min-width: 50vh;
   width: 60vh;
   background: #d3573c;
-  padding: 2em 2em 4em;
+  padding: 1em 2em;
 }
 @media (max-width: 576px) {
   #formModal .formDiv {
@@ -254,6 +257,7 @@ select option {
 }
 #formModal .formDiv header h1 {
   padding: 0 1em 1em 0;
+  font-size: 1.5em;
 }
 #formModal .formDiv header span {
   color: white;
@@ -281,14 +285,14 @@ select option {
   align-items: flex-start;
   flex-direction: column;
   width: 100%;
-  font-size: 1.25em;
+  font-size: 1.2em;
   font-weight: 400;
 }
 #formModal .formDiv form .artistFormGroup input,
 #formModal .formDiv form .artistFormGroup textarea {
   width: 100%;
   margin-bottom: 0.3em;
-  height: 3.5em;
+  height: 2.4em;
   padding: 0.5em;
 }
 @media (max-width: 576px) {
@@ -299,7 +303,7 @@ select option {
   }
 }
 #formModal .formDiv form .artistFormGroup textarea {
-  min-height: 12em;
+  min-height: 10em;
 }
 @media (max-width: 576px) {
   #formModal .formDiv form .artistFormGroup textarea {
@@ -314,9 +318,9 @@ select option {
 
 .formError {
   display: none;
-  font-size: 0.9em;
+  font-size: 0.8em;
   margin-bottom: 0.5em;
-  padding: 0.2em;
+  padding: 0 0.2em;
   color: white;
   background: #901c1c;
 }

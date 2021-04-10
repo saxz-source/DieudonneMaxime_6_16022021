@@ -34,7 +34,6 @@ export class Media {
      * Create medias in the photographer's page
      */
     async createMediaView() {
-
         // set variables et get main elements
         let name = await this.getArtistName();
         let gotPhotoName = Media.getMediaName(
@@ -143,24 +142,29 @@ export class Media {
         photoLikes.innerHTML = this.likes;
 
         // Increase or decrease the amounts of local and global likes
-        photoHeart.addEventListener("click", (e) => {
-            this.likes++;
-            this.totalLikes++;
-            photoLikes.innerHTML = this.likes;
-            document.getElementById("totalLikes").innerHTML = this.totalLikes;
+        photoLikesAndHeart.addEventListener("click", (e) => {
+            this.handleIncreaseLikes(photoLikes);
         });
-
+        // .. same when enter key is pressed
         photoLikesAndHeart.addEventListener("keydown", (e) => {
             if (e.key === "Enter") {
                 e.preventDefault();
-                this.likes++;
-                this.totalLikes++;
-                photoLikes.innerHTML = this.likes;
-                document.getElementById(
-                    "totalLikes"
-                ).innerHTML = this.totalLikes;
+                this.handleIncreaseLikes(photoLikes);
             }
         });
+    }
+
+
+
+    /**
+     * Increase local and total likes number
+     * @param  photoLikesElement HTMLElement which contains the likes number
+     */
+   handleIncreaseLikes(photoLikesElement) {
+        this.likes++;
+        this.totalLikes++;
+        photoLikesElement.innerHTML = this.likes;
+        document.getElementById("totalLikes").innerHTML = this.totalLikes;
     }
 
     /**
@@ -184,10 +188,7 @@ export class Media {
             thePhoto = document.createElement("video");
             thePhoto.classList.add("thePhoto");
             onePhoto.appendChild(thePhoto);
-            thePhoto.setAttribute(
-                "aria-label",
-                "vidéo. " + this.description
-            );
+            thePhoto.setAttribute("aria-label", "vidéo. " + this.description);
             let videoSource = document.createElement("source");
             thePhoto.id = this.id;
             videoSource.setAttribute("src", `${this.getPhotoUrl(name)}`);
@@ -197,6 +198,15 @@ export class Media {
         }
         thePhoto.setAttribute("tabindex", "0");
 
+        // prepare the display of the lightBox after a click
+        thePhoto.addEventListener("click", (e) => {
+            let mediaId = e.target.id;
+            let lightMediaDisplayed = prepareLightBox.filter(
+                (i) => i.id == mediaId
+            );
+            this.createLightMedia(lightMediaDisplayed[0]);
+        });
+        // ... same for key handling
         thePhoto.addEventListener("keydown", (e) => {
             if (e.key === "Enter") {
                 e.preventDefault();
@@ -207,16 +217,7 @@ export class Media {
                 this.createLightMedia(lightMediaDisplayed[0]);
             }
         });
-        // prepare the display of the lightBox after a click
-        thePhoto.addEventListener("click", (e) => {
-            let mediaId = e.target.id;
-            let lightMediaDisplayed = prepareLightBox.filter(
-                (i) => i.id == mediaId
-            );
-            this.createLightMedia(lightMediaDisplayed[0]);
-        });
     }
-
 
     /*************************Light media section*********************/
     /**
@@ -313,7 +314,6 @@ export class Media {
                     break;
                 case "Escape":
                     e.preventDefault();
-
                     this.onCloseLightBox();
                 case "Tab":
                     if (e.shiftKey) {
@@ -354,7 +354,7 @@ export class Media {
      * @param  lightMediaObject An object with lightMedia informations
      */
     async fillLightMedia(lightMediaObject) {
-       // console.log(lightMediaObject);
+        // console.log(lightMediaObject);
         const lightImg = document.getElementById("lightImg");
         const lightVideo = document.getElementById("lightVideo");
 
@@ -367,7 +367,6 @@ export class Media {
 
         // Case : it is an image
         if (lightMediaObject.image) {
-            
             lightVideo.style.display = "none";
             lightImg.style.display = "initial";
             lightImg.setAttribute(
@@ -378,7 +377,7 @@ export class Media {
                 )}`
             );
             lightImg.setAttribute("alt", lightMediaObject.description);
-            lightImg.setAttribute("tabindex", "0")
+            lightImg.setAttribute("tabindex", "0");
 
             // Case : it is a video
         } else if (lightMediaObject.video) {
@@ -394,7 +393,7 @@ export class Media {
 
             lightVideo.appendChild(lightVideoSource);
             lightVideo.setAttribute("type", "video/mp4");
-            lightVideo.setAttribute("tabindex", "0")
+            lightVideo.setAttribute("tabindex", "0");
             lightVideo.style.display = "block";
         }
 

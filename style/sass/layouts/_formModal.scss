@@ -23,7 +23,7 @@
         min-width: 50vh;
         width: 60vh;
        background: $bg-secondary;
-        padding: 2em 2em 4em;
+        padding: 1em 2em ;
         @include sm {
             font-size: 1em;
             height : 100%;
@@ -43,6 +43,7 @@
             }
             h1 {
                 padding: 0 1em 1em 0;
+                font-size: 1.5em;
             
     
             }
@@ -71,13 +72,13 @@
                 align-items: flex-start;
                 flex-direction: column;
                 width: 100%;
-                font-size: 1.25em;
+                font-size: 1.2em;
                 font-weight: 400;
                 input,
                 textarea {
                     width: 100%;
                     margin-bottom: 0.3em;
-                    height: 3.5em;
+                    height: 2.4em;
                     padding: 0.5em;
                     @include sm {
                         font-size: 1em;
@@ -85,7 +86,7 @@
                     }
                 }
                 textarea {
-                    min-height: 12em;
+                    min-height: 10em;
                     @include sm {
                         font-size: 1em;
                         min-height : 8em;
@@ -104,9 +105,9 @@
 
 .formError {
     display: none;
-    font-size: 0.9em;
+    font-size: 0.8em;
     margin-bottom: 0.5em;
-    padding : 0.2em;
+    padding : 0 0.2em;
     color : white;
     background : #901c1c;
 }

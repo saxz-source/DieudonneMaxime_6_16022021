@@ -19,6 +19,9 @@ export class FormModal {
         this.artistForm = document.getElementById("artistForm");
     }
 
+    /**
+     * Generate the form modal
+     */
     createFormModal() {
         this.setModalHeader();
         this.setDisplayAndFocus();
@@ -28,6 +31,9 @@ export class FormModal {
         this.submitForm();
     }
 
+    /**
+     * Submit the if valid. Display values in console.
+     */
     submitForm() {
         sendForm.addEventListener("click", (e) => {
             e.preventDefault();
@@ -45,7 +51,7 @@ export class FormModal {
         });
     }
     /**
-     * Handling closing modal with keys
+     * Handling closing modal with keys (Escape and Enter)
      */
     listenKeyClose() {
         formModal.addEventListener("keydown", (e) => {
@@ -60,14 +66,14 @@ export class FormModal {
         });
     }
 
+
+    /**
+     * Handle Tab Navigation
+     */
     listenKeyNavigation() {
         document.addEventListener("keydown", function (e) {
-            let isTabPressed = e.key === "Tab" || e.keyCode === 9;
-
+            let isTabPressed = e.key === "Tab";
             if (!isTabPressed) return;
-            //  console.log(document.activeElement);
-            console.log(e.key);
-
             if (isTabPressed) {
                 if (e.shiftKey) {
                     // if shift key pressed for shift + tab combination
@@ -98,8 +104,6 @@ export class FormModal {
     // Get the name of the photographer and display it
     setModalHeader() {
         makeRequest("get", "src/bdd/photographers.json").then((r) => {
-            console.log(r);
-
             let name = r.photographers.filter(
                 (person) => person.id == this.photographerId
             )[0].name;
@@ -112,7 +116,6 @@ export class FormModal {
      * Handling closing modal
      */
     listenOnCloseModal() {
-        console.log("set");
         closeModal.addEventListener("click", (e) => {
             this.onCloseModal();
             console.log(document.activeElement);
@@ -135,8 +138,6 @@ export class FormModal {
         let submitOk = true;
         var nameRegex = /[0-9,;:!~#{[|`^@\]}?./¤€§*$^%+µ£¨=)_("&)\\]/g;
         var mailRegex = /\S+@\S+\.\S+/;
-
-        console.log(firstName.value.search(nameRegex));
         if (
             !firstName.validity.valid ||
             firstName.value.search(nameRegex) != -1
@@ -159,13 +160,11 @@ export class FormModal {
         ) {
             document.getElementById("secondInputError").style.display = "block";
             this.removeGreenBorderValidation(secondName);
-
             this.secondName.setAttribute("aria-invalid", "true");
             this.secondName.setAttribute(
                 "aria-describedby",
                 "secondInputError"
             );
-
             submitOk = false;
         } else {
             this.greenBorderValidation(secondName);
@@ -177,16 +176,13 @@ export class FormModal {
         if (!email.validity.valid || !mailRegex.test(email.value)) {
             document.getElementById("emailInputError").style.display = "block";
             this.removeGreenBorderValidation(email);
-
             this.email.setAttribute("aria-invalid", "true");
             this.email.setAttribute("aria-describedby", "emailInputError");
-
             submitOk = false;
         } else {
             this.greenBorderValidation(email);
             this.email.removeAttribute("aria-invalid");
             this.email.setAttribute("aria-describedby", "mail-describe");
-
             document.getElementById("emailInputError").style.display = "none";
         }
 
@@ -196,7 +192,6 @@ export class FormModal {
             this.removeGreenBorderValidation(message);
             this.message.removeAttribute("aria-invalid");
             this.message.setAttribute("aria-describedby", "messageInputError");
-
             submitOk = false;
         } else {
             this.greenBorderValidation(message);
@@ -213,6 +208,7 @@ export class FormModal {
         element.style.border = "2px solid green";
     }
 
+    // Make the element input borders red
     removeGreenBorderValidation(element) {
         element.style.border = "2px solid #95FFF9";
     }

@@ -1,31 +1,33 @@
 .tagLinks {
-  height: 22px;
-  border: 0.5px solid $font-third;
-  border-radius: 11px;
-  background: $bg-third;
-  color: $font-secondary;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0.2em 0.5em;
-  cursor: pointer;
-  @include sm {
-      font-size: 0.9em;
-  }
+    height: 22px;
+    border: 0.5px solid $font-third;
+    border-radius: 11px;
+    background: $bg-third;
+    color: $font-secondary;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.2em 0.5em;
+    @include sm {
+        font-size: 0.9em;
+    }
+    &Nav {
+        cursor: pointer;
+    }
 
-  &:hover,
-  &:focus {
-    background: $bg-primary;
-    color: $bg-third;
-  }
+    &:hover,
+    &:focus {
+        background: $bg-primary;
+        color: $bg-third;
+    }
 }
 
 .tagUl {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-  li {
-    margin: 0.1em;
-  }
+    li {
+        margin: 0.1em;
+    }
 }

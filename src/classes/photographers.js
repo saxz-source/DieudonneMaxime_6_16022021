@@ -34,8 +34,7 @@ export class PhotographerClass {
         for (let tag of this.tags) {
             let divTag = document.createElement("li");
             divTag.classList.add("tagLinks");
-            divTag.setAttribute("aria-label", "Tag");
-            divTag.setAttribute("role", "link");
+            divTag.setAttribute("aria-label", tag);
             divTag.setAttribute("tabindex", "0");
             divTag.innerHTML = "#" + tag;
             tagsLinksDiv.appendChild(divTag);
@@ -87,6 +86,7 @@ export class PhotographerClass {
         //Display the banner
         let phName = document.getElementById("phName");
         phName.textContent = this.name;
+        phName.setAttribute("tabindex", "0");
         let phFrom = document.getElementById("phFrom");
         phFrom.textContent = this.city + ", " + this.country;
         let phSentence = document.getElementById("phSentence");
@@ -100,8 +100,9 @@ export class PhotographerClass {
         for (let tag of this.tags) {
             let divTag = document.createElement("li");
             divTag.classList.add("tagLinks");
-            divTag.setAttribute("aria-label", tag);
             divTag.innerHTML = "#" + tag;
+            divTag.setAttribute("tabindex", "0");
+            divTag.setAttribute("aria-label", tag);
             phUlTags.appendChild(divTag);
         }
         // Display its cost in the bottom-right div

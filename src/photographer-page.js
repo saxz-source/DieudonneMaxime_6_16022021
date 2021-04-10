@@ -76,6 +76,9 @@ sortMenu.addEventListener("input", function (e) {
     });
 });
 
+/**
+ * Listener to create Form Modal
+ */
 contactMe.addEventListener("click", function () {
     console.log(phId);
     let newFormModal = new FormModal(phId);
